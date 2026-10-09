@@ -695,16 +695,24 @@
     }
 
     async function reverseLookupDeviceLocation(coords) {
-      const response = await fetch(
-        `https://nominatim.openstreetmap.org/reverse?format=jsonv2&addressdetails=1&namedetails=1&zoom=18&lat=${encodeURIComponent(coords.lat)}&lon=${encodeURIComponent(coords.lng)}`,
-        {
-          headers: {
-            'Accept-Language': currentLang === 'id' ? 'id,en;q=0.8' : 'en,id;q=0.8'
+      const controller = new AbortController();
+      const timeoutId = window.setTimeout(() => controller.abort(), 2500);
+
+      try {
+        const response = await fetch(
+          `https://nominatim.openstreetmap.org/reverse?format=jsonv2&addressdetails=1&namedetails=1&zoom=18&lat=${encodeURIComponent(coords.lat)}&lon=${encodeURIComponent(coords.lng)}`,
+          {
+            headers: {
+              'Accept-Language': currentLang === 'id' ? 'id,en;q=0.8' : 'en,id;q=0.8'
+            },
+            signal: controller.signal
           }
-        }
-      );
-      if (!response.ok) throw new Error(`Reverse geocoding failed (${response.status})`);
-      return response.json();
+        );
+        if (!response.ok) throw new Error(`Reverse geocoding failed (${response.status})`);
+        return response.json();
+      } finally {
+        window.clearTimeout(timeoutId);
+      }
     }
 
     async function resolveDeviceLocation(position, box) {
@@ -744,41 +752,8 @@
         };
       }
 
-      // GPS success is authoritative. Reverse lookup may improve the label, but lookup failure
-      // must never turn a valid GPS position into a geolocation failure.
-      try {
-        const place = await reverseLookupDeviceLocation(coords);
-        const poiLabel = getNominatimPoiLabel(place);
-        if (poiLabel) {
-          return {
-            hasLocation: true,
-            source: 'poi',
-            label: `${poiLabel} · lokasi saya`,
-            lat: coords.lat,
-            lng: coords.lng,
-            accuracy: coords.accuracy,
-            breakpoint: null,
-            airportMarker: null,
-            place
-          };
-        }
-
-        const addressLabel = getNominatimAddressLabel(place);
-        if (addressLabel) {
-          return {
-            hasLocation: true,
-            source: 'address',
-            label: `${addressLabel} · lokasi saya`,
-            lat: coords.lat,
-            lng: coords.lng,
-            accuracy: coords.accuracy,
-            breakpoint: null,
-            airportMarker: null,
-            place
-          };
-        }
-      } catch (_) {}
-
+      // GPS success is authoritative. Return immediately so the UI does not wait
+      // for reverse geocoding. A human-readable place label is enriched afterward.
       return {
         hasLocation: true,
         source: 'coordinates',
@@ -789,6 +764,35 @@
         breakpoint: null,
         airportMarker: null
       };
+    }
+
+    async function enrichResolvedLocationLabel(box, resolved) {
+      if (!box || resolved?.source !== 'coordinates') return;
+
+      try {
+        const place = await reverseLookupDeviceLocation(resolved);
+        const label = getNominatimPoiLabel(place) || getNominatimAddressLabel(place);
+        if (!label) return;
+
+        const sameLocation =
+          box.dataset.locationResolved === 'true' &&
+          Number(box.dataset.locationLatitude) === Number(resolved.lat) &&
+          Number(box.dataset.locationLongitude) === Number(resolved.lng);
+
+        if (!sameLocation) return;
+
+        const enriched = {
+          ...resolved,
+          source: getNominatimPoiLabel(place) ? 'poi' : 'address',
+          label: `${label} · lokasi saya`,
+          place
+        };
+
+        applyResolvedLocationToBox(box, enriched);
+        updateLocationMapPreview(box, enriched);
+      } catch (_) {
+        // Keep the already-resolved GPS coordinates when reverse lookup is slow/unavailable.
+      }
     }
 
     function applyResolvedLocationToBox(box, resolved) {
@@ -1051,6 +1055,7 @@
             const resolved = await resolveDeviceLocation(position, box);
             applyResolvedLocationToBox(box, resolved);
             updateLocationMapPreview(box, resolved);
+            void enrichResolvedLocationLabel(box, resolved);
 
             locationBtnClicked.disabled = false;
             locationBtnClicked.innerHTML = '<i class="fas fa-circle-check"></i> Lokasi terdeteksi';
@@ -1081,7 +1086,7 @@
               3: 'Permintaan lokasi terlalu lama. Silakan coba lagi.'
             };
             alert(messages[error.code] || 'Lokasi tidak dapat dibaca.');
-          }, { enableHighAccuracy: true, timeout: 10000, maximumAge: 30000 });
+          }, { enableHighAccuracy: true, timeout: 6000, maximumAge: 300000 });
         }
       });
     });
