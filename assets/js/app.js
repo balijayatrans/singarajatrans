@@ -1051,7 +1051,7 @@
           locationBtnClicked.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Membaca lokasi...';
           box.dataset.locationResolved = 'false';
 
-          navigator.geolocation.getCurrentPosition(async position => {
+          const handleLocationSuccess = async position => {
             const resolved = await resolveDeviceLocation(position, box);
             applyResolvedLocationToBox(box, resolved);
             updateLocationMapPreview(box, resolved);
@@ -1069,7 +1069,9 @@
               resetComboboxSearch(box);
               advanceAfterComboboxSelection(box);
             }, 650);
-          }, error => {
+          };
+
+          const handleLocationFailure = error => {
             locationBtnClicked.disabled = false;
             locationBtnClicked.innerHTML = originalHtml;
             box.dataset.locationResolved = 'false';
@@ -1086,7 +1088,26 @@
               3: 'Permintaan lokasi terlalu lama. Silakan coba lagi.'
             };
             alert(messages[error.code] || 'Lokasi tidak dapat dibaca.');
-          }, { enableHighAccuracy: true, timeout: 6000, maximumAge: 300000 });
+          };
+
+          // Fast path first: allow cached/network-assisted location so the UI can respond quickly.
+          // Only retry with high-accuracy GPS when the fast attempt cannot produce a position.
+          navigator.geolocation.getCurrentPosition(
+            handleLocationSuccess,
+            fastError => {
+              if (fastError?.code === 1) {
+                handleLocationFailure(fastError);
+                return;
+              }
+
+              navigator.geolocation.getCurrentPosition(
+                handleLocationSuccess,
+                handleLocationFailure,
+                { enableHighAccuracy: true, timeout: 4500, maximumAge: 300000 }
+              );
+            },
+            { enableHighAccuracy: false, timeout: 2500, maximumAge: 600000 }
+          );
         }
       });
     });
