@@ -826,20 +826,8 @@
       }));
     }
 
-    function updateLocationMapPreview(box, resolved) {
-      const mapPreview = box?.querySelector('.combo-map-preview');
-      const mapFrame = box?.querySelector('.combo-map-frame');
-      const mapText = box?.querySelector('.combo-map-text');
-      if (!mapPreview || !mapFrame || !resolved?.hasLocation) return;
-
-      const delta = 0.008;
-      const left = resolved.lng - delta;
-      const right = resolved.lng + delta;
-      const bottom = resolved.lat - delta;
-      const top = resolved.lat + delta;
-      mapFrame.src = `https://www.openstreetmap.org/export/embed.html?bbox=${encodeURIComponent(left)},${encodeURIComponent(bottom)},${encodeURIComponent(right)},${encodeURIComponent(top)}&layer=mapnik&marker=${encodeURIComponent(resolved.lat)},${encodeURIComponent(resolved.lng)}`;
-      if (mapText) mapText.textContent = resolved.label;
-      mapPreview.classList.add('is-visible');
+    function updateLocationMapPreview() {
+      // Map preview intentionally removed from booking dropdowns for a lighter mobile flow.
     }
 
     comboboxes.forEach(box => {
@@ -1094,30 +1082,49 @@
             return;
           }
 
-          const airportMarkerRequired = box.closest('#airportForm')?.dataset.requireAirportMarker === 'true';
-          if (airportMarkerRequired && (!Array.isArray(SINGARAJA_AIRPORT_MARKERS) || !SINGARAJA_AIRPORT_MARKERS.length)) {
-            alert('Marker Bandara Ngurah Rai belum tersedia. Lokasi belum dapat digunakan.');
-            return;
-          }
-
           const originalHtml = locationBtnClicked.innerHTML;
           locationBtnClicked.disabled = true;
           locationBtnClicked.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Membaca lokasi...';
           box.dataset.locationResolved = 'false';
 
-          let locationSettled = false;
+          let locationInteractionClosed = false;
+          let watchdogId = null;
+
+          const resetLocationDatasets = () => {
+            box.dataset.locationResolved = 'false';
+            delete box.dataset.locationSource;
+            delete box.dataset.locationLatitude;
+            delete box.dataset.locationLongitude;
+            delete box.dataset.locationAccuracy;
+            box.dataset.locationBreakpoint = '';
+            box.dataset.airportMarker = '';
+          };
+
+          const showLocationRetryState = () => {
+            locationBtnClicked.disabled = false;
+            locationBtnClicked.innerHTML = '<i class="fas fa-location-crosshairs"></i> Lokasi belum terbaca · coba lagi';
+            window.setTimeout(() => {
+              if (!locationBtnClicked.disabled) locationBtnClicked.innerHTML = originalHtml;
+            }, 1800);
+          };
 
           const finishLocationSuccess = async (position, { silent = false } = {}) => {
             cacheDevicePosition(position);
+
+            if (locationInteractionClosed && !silent) return;
+
             const resolved = await resolveDeviceLocation(position, box);
 
+            if (locationInteractionClosed && !silent) return;
+
             applyResolvedLocationToBox(box, resolved);
-            updateLocationMapPreview(box, resolved);
             void enrichResolvedLocationLabel(box, resolved);
 
             if (silent) return;
 
-            locationSettled = true;
+            locationInteractionClosed = true;
+            if (watchdogId) window.clearTimeout(watchdogId);
+
             locationBtnClicked.disabled = false;
             locationBtnClicked.innerHTML = '<i class="fas fa-circle-check"></i> Lokasi terdeteksi';
             dropdown.classList.remove('hidden');
@@ -1131,13 +1138,10 @@
               advanceAfterComboboxSelection(box);
             }, 650);
 
-            // Improve the cached position after the UI has already completed.
+            // Improve only the cache in the background. Do not block or re-open the UI.
             window.setTimeout(() => {
               navigator.geolocation.getCurrentPosition(
-                freshPosition => {
-                  cacheDevicePosition(freshPosition);
-                  if (locationSettled) void finishLocationSuccess(freshPosition, { silent: true });
-                },
+                freshPosition => cacheDevicePosition(freshPosition),
                 () => {},
                 { enableHighAccuracy: true, timeout: 3500, maximumAge: 5 * 60 * 1000 }
               );
@@ -1145,24 +1149,19 @@
           };
 
           const handleLocationFailure = error => {
-            if (locationSettled) return;
+            if (locationInteractionClosed) return;
+            locationInteractionClosed = true;
+            if (watchdogId) window.clearTimeout(watchdogId);
+            resetLocationDatasets();
 
-            locationBtnClicked.disabled = false;
-            locationBtnClicked.innerHTML = originalHtml;
-            box.dataset.locationResolved = 'false';
-            delete box.dataset.locationSource;
-            delete box.dataset.locationLatitude;
-            delete box.dataset.locationLongitude;
-            delete box.dataset.locationAccuracy;
-            box.dataset.locationBreakpoint = '';
-            box.dataset.airportMarker = '';
+            if (error?.code === 1) {
+              locationBtnClicked.disabled = false;
+              locationBtnClicked.innerHTML = originalHtml;
+              alert('Izin lokasi ditolak. Aktifkan izin lokasi browser lalu coba lagi.');
+              return;
+            }
 
-            const messages = {
-              1: 'Izin lokasi ditolak. Aktifkan izin lokasi browser lalu coba lagi.',
-              2: 'Lokasi perangkat tidak dapat ditemukan.',
-              3: 'Lokasi belum terbaca. Silakan coba lagi.'
-            };
-            alert(messages[error.code] || 'Lokasi tidak dapat dibaca.');
+            showLocationRetryState();
           };
 
           const cachedPosition = readCachedDevicePosition();
@@ -1172,11 +1171,25 @@
             return;
           }
 
-          // First read favors network/cached positioning so the UI is not blocked by GPS.
+          // UI watchdog: never leave the user staring at a spinner for more than ~3 seconds.
+          watchdogId = window.setTimeout(() => {
+            if (locationInteractionClosed) return;
+            locationInteractionClosed = true;
+            resetLocationDatasets();
+            showLocationRetryState();
+          }, 3000);
+
+          // Fast initial read. Browser GPS may continue internally, but the UI has its own deadline.
           navigator.geolocation.getCurrentPosition(
-            position => void finishLocationSuccess(position),
+            position => {
+              if (locationInteractionClosed) {
+                cacheDevicePosition(position);
+                return;
+              }
+              void finishLocationSuccess(position);
+            },
             handleLocationFailure,
-            { enableHighAccuracy: false, timeout: 3000, maximumAge: 10 * 60 * 1000 }
+            { enableHighAccuracy: false, timeout: 2800, maximumAge: 10 * 60 * 1000 }
           );
         }
       });
