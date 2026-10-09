@@ -959,6 +959,60 @@
       if (emptyEl) emptyEl.classList.add('hidden');
     }
 
+    const LOCATION_CACHE_KEY = 'singaraja:last-location';
+    const LOCATION_CACHE_MAX_AGE = 15 * 60 * 1000;
+
+    function readCachedDevicePosition() {
+      try {
+        const cached = JSON.parse(localStorage.getItem(LOCATION_CACHE_KEY) || 'null');
+        const age = cached?.timestamp ? Date.now() - Number(cached.timestamp) : Infinity;
+        if (
+          Number.isFinite(cached?.latitude) &&
+          Number.isFinite(cached?.longitude) &&
+          age <= LOCATION_CACHE_MAX_AGE
+        ) {
+          return {
+            coords: {
+              latitude: Number(cached.latitude),
+              longitude: Number(cached.longitude),
+              accuracy: Number.isFinite(cached.accuracy) ? Number(cached.accuracy) : null
+            }
+          };
+        }
+      } catch (_) {}
+      return null;
+    }
+
+    function cacheDevicePosition(position) {
+      try {
+        localStorage.setItem(LOCATION_CACHE_KEY, JSON.stringify({
+          latitude: Number(position.coords.latitude),
+          longitude: Number(position.coords.longitude),
+          accuracy: Number.isFinite(position.coords.accuracy) ? Number(position.coords.accuracy) : null,
+          timestamp: Date.now()
+        }));
+      } catch (_) {}
+    }
+
+    function refreshDevicePositionInBackground() {
+      if (!navigator.geolocation) return;
+      navigator.geolocation.getCurrentPosition(
+        position => cacheDevicePosition(position),
+        () => {},
+        { enableHighAccuracy: false, timeout: 3000, maximumAge: 10 * 60 * 1000 }
+      );
+    }
+
+    async function prewarmDeviceLocationCache() {
+      if (!navigator.geolocation || !navigator.permissions?.query) return;
+      try {
+        const permission = await navigator.permissions.query({ name: 'geolocation' });
+        if (permission.state === 'granted') refreshDevicePositionInBackground();
+      } catch (_) {}
+    }
+
+    void prewarmDeviceLocationCache();
+
     comboboxes.forEach(box => {
       const trigger = box.querySelector('.combo-trigger');
       const dropdown = box.querySelector('.combo-dropdown');
@@ -1051,21 +1105,11 @@
           locationBtnClicked.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Membaca lokasi...';
           box.dataset.locationResolved = 'false';
 
-          const LOCATION_CACHE_KEY = 'singaraja:last-location';
           let locationSettled = false;
-          let locationFailures = 0;
 
           const finishLocationSuccess = async (position, { silent = false } = {}) => {
+            cacheDevicePosition(position);
             const resolved = await resolveDeviceLocation(position, box);
-
-            try {
-              localStorage.setItem(LOCATION_CACHE_KEY, JSON.stringify({
-                latitude: resolved.lat,
-                longitude: resolved.lng,
-                accuracy: resolved.accuracy,
-                timestamp: Date.now()
-              }));
-            } catch (_) {}
 
             applyResolvedLocationToBox(box, resolved);
             updateLocationMapPreview(box, resolved);
@@ -1086,19 +1130,22 @@
               resetComboboxSearch(box);
               advanceAfterComboboxSelection(box);
             }, 650);
-          };
 
-          const handleLocationSuccess = position => {
-            if (locationSettled) {
-              void finishLocationSuccess(position, { silent: true });
-              return;
-            }
-            void finishLocationSuccess(position);
+            // Improve the cached position after the UI has already completed.
+            window.setTimeout(() => {
+              navigator.geolocation.getCurrentPosition(
+                freshPosition => {
+                  cacheDevicePosition(freshPosition);
+                  if (locationSettled) void finishLocationSuccess(freshPosition, { silent: true });
+                },
+                () => {},
+                { enableHighAccuracy: true, timeout: 3500, maximumAge: 5 * 60 * 1000 }
+              );
+            }, 0);
           };
 
           const handleLocationFailure = error => {
-            locationFailures += 1;
-            if (locationSettled || locationFailures < 2) return;
+            if (locationSettled) return;
 
             locationBtnClicked.disabled = false;
             locationBtnClicked.innerHTML = originalHtml;
@@ -1113,42 +1160,23 @@
             const messages = {
               1: 'Izin lokasi ditolak. Aktifkan izin lokasi browser lalu coba lagi.',
               2: 'Lokasi perangkat tidak dapat ditemukan.',
-              3: 'Permintaan lokasi terlalu lama. Silakan coba lagi.'
+              3: 'Lokasi belum terbaca. Silakan coba lagi.'
             };
             alert(messages[error.code] || 'Lokasi tidak dapat dibaca.');
           };
 
-          // Instant reuse of a recent successful position. Refresh GPS silently afterward.
-          try {
-            const cached = JSON.parse(localStorage.getItem(LOCATION_CACHE_KEY) || 'null');
-            const age = cached?.timestamp ? Date.now() - Number(cached.timestamp) : Infinity;
-            if (
-              Number.isFinite(cached?.latitude) &&
-              Number.isFinite(cached?.longitude) &&
-              age <= 15 * 60 * 1000
-            ) {
-              const cachedPosition = {
-                coords: {
-                  latitude: Number(cached.latitude),
-                  longitude: Number(cached.longitude),
-                  accuracy: Number.isFinite(cached.accuracy) ? Number(cached.accuracy) : null
-                }
-              };
-              void finishLocationSuccess(cachedPosition);
-            }
-          } catch (_) {}
+          const cachedPosition = readCachedDevicePosition();
+          if (cachedPosition) {
+            void finishLocationSuccess(cachedPosition);
+            refreshDevicePositionInBackground();
+            return;
+          }
 
-          // Start both strategies at the same time and use whichever succeeds first.
+          // First read favors network/cached positioning so the UI is not blocked by GPS.
           navigator.geolocation.getCurrentPosition(
-            handleLocationSuccess,
+            position => void finishLocationSuccess(position),
             handleLocationFailure,
-            { enableHighAccuracy: false, timeout: 1800, maximumAge: Infinity }
-          );
-
-          navigator.geolocation.getCurrentPosition(
-            handleLocationSuccess,
-            handleLocationFailure,
-            { enableHighAccuracy: true, timeout: 4500, maximumAge: 300000 }
+            { enableHighAccuracy: false, timeout: 3000, maximumAge: 10 * 60 * 1000 }
           );
         }
       });
