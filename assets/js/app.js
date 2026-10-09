@@ -1051,12 +1051,29 @@
           locationBtnClicked.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Membaca lokasi...';
           box.dataset.locationResolved = 'false';
 
-          const handleLocationSuccess = async position => {
+          const LOCATION_CACHE_KEY = 'singaraja:last-location';
+          let locationSettled = false;
+          let locationFailures = 0;
+
+          const finishLocationSuccess = async (position, { silent = false } = {}) => {
             const resolved = await resolveDeviceLocation(position, box);
+
+            try {
+              localStorage.setItem(LOCATION_CACHE_KEY, JSON.stringify({
+                latitude: resolved.lat,
+                longitude: resolved.lng,
+                accuracy: resolved.accuracy,
+                timestamp: Date.now()
+              }));
+            } catch (_) {}
+
             applyResolvedLocationToBox(box, resolved);
             updateLocationMapPreview(box, resolved);
             void enrichResolvedLocationLabel(box, resolved);
 
+            if (silent) return;
+
+            locationSettled = true;
             locationBtnClicked.disabled = false;
             locationBtnClicked.innerHTML = '<i class="fas fa-circle-check"></i> Lokasi terdeteksi';
             dropdown.classList.remove('hidden');
@@ -1071,7 +1088,18 @@
             }, 650);
           };
 
+          const handleLocationSuccess = position => {
+            if (locationSettled) {
+              void finishLocationSuccess(position, { silent: true });
+              return;
+            }
+            void finishLocationSuccess(position);
+          };
+
           const handleLocationFailure = error => {
+            locationFailures += 1;
+            if (locationSettled || locationFailures < 2) return;
+
             locationBtnClicked.disabled = false;
             locationBtnClicked.innerHTML = originalHtml;
             box.dataset.locationResolved = 'false';
@@ -1090,23 +1118,37 @@
             alert(messages[error.code] || 'Lokasi tidak dapat dibaca.');
           };
 
-          // Fast path first: allow cached/network-assisted location so the UI can respond quickly.
-          // Only retry with high-accuracy GPS when the fast attempt cannot produce a position.
+          // Instant reuse of a recent successful position. Refresh GPS silently afterward.
+          try {
+            const cached = JSON.parse(localStorage.getItem(LOCATION_CACHE_KEY) || 'null');
+            const age = cached?.timestamp ? Date.now() - Number(cached.timestamp) : Infinity;
+            if (
+              Number.isFinite(cached?.latitude) &&
+              Number.isFinite(cached?.longitude) &&
+              age <= 15 * 60 * 1000
+            ) {
+              const cachedPosition = {
+                coords: {
+                  latitude: Number(cached.latitude),
+                  longitude: Number(cached.longitude),
+                  accuracy: Number.isFinite(cached.accuracy) ? Number(cached.accuracy) : null
+                }
+              };
+              void finishLocationSuccess(cachedPosition);
+            }
+          } catch (_) {}
+
+          // Start both strategies at the same time and use whichever succeeds first.
           navigator.geolocation.getCurrentPosition(
             handleLocationSuccess,
-            fastError => {
-              if (fastError?.code === 1) {
-                handleLocationFailure(fastError);
-                return;
-              }
+            handleLocationFailure,
+            { enableHighAccuracy: false, timeout: 1800, maximumAge: Infinity }
+          );
 
-              navigator.geolocation.getCurrentPosition(
-                handleLocationSuccess,
-                handleLocationFailure,
-                { enableHighAccuracy: true, timeout: 4500, maximumAge: 300000 }
-              );
-            },
-            { enableHighAccuracy: false, timeout: 2500, maximumAge: 600000 }
+          navigator.geolocation.getCurrentPosition(
+            handleLocationSuccess,
+            handleLocationFailure,
+            { enableHighAccuracy: true, timeout: 4500, maximumAge: 300000 }
           );
         }
       });
