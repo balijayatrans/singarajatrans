@@ -1775,7 +1775,7 @@
       });
     }
 
-    function setAirportBoxState(box, trigger, chevron, values, displayValue, isFixed, iconClass, placeholder) {
+    function setAirportBoxState(box, trigger, chevron, values, displayValue, isFixed, iconClass, placeholder, allowLocation = false) {
       if (!box || !trigger) return;
       setComboboxOptions(box, values, iconClass);
       const valueEl = box.querySelector('.combo-value');
@@ -1790,12 +1790,13 @@
       trigger.classList.toggle('cursor-default', isFixed);
       trigger.classList.toggle('cursor-pointer', !isFixed);
       chevron?.classList.toggle('hidden', isFixed);
-      box.dataset.hasLocation = String(!isFixed);
+      const locationEnabled = !isFixed && allowLocation;
+      box.dataset.hasLocation = String(locationEnabled);
       box.dataset.locationResolved = 'false';
       box.dataset.locationBreakpoint = '';
       box.dataset.airportMarker = '';
       const locationButton = box.querySelector('.combo-location');
-      locationButton?.classList.toggle('hidden', isFixed);
+      locationButton?.classList.toggle('hidden', !locationEnabled);
       box.querySelectorAll('.combo-item').forEach(item => item.classList.remove('active'));
       box.querySelector('.combo-dropdown')?.classList.add('hidden');
       box.classList.remove('is-open');
@@ -1818,7 +1819,8 @@
         airport,
         fromAirport,
         fromAirport ? 'fas fa-plane-arrival text-slate-400' : 'fas fa-location-dot text-singaraja-orange',
-        'Pilih kota asal'
+        'Pilih kota asal',
+        !fromAirport
       );
 
       setAirportBoxState(
@@ -1829,7 +1831,8 @@
         airport,
         !fromAirport,
         fromAirport ? 'fas fa-location-dot text-singaraja-orange' : 'fas fa-plane-departure text-slate-400',
-        'Pilih kota tujuan'
+        'Pilih kota tujuan',
+        false
       );
 
       if (airportPickupIcon) {
