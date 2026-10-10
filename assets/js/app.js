@@ -74,7 +74,7 @@ const menuButton = document.getElementById('menuButton');
     let downwardTravel = 0;
 
     const desktopHeaderQuery = window.matchMedia('(min-width: 768px)');
-    const NAV_SHOW_AFTER_UP_PX = 6;
+    const NAV_SHOW_AFTER_UP_PX = 1;
     const NAV_HIDE_AFTER_DOWN_PX = 12;
     const NAV_ALWAYS_VISIBLE_TOP_PX = 22;
 
@@ -129,15 +129,37 @@ const menuButton = document.getElementById('menuButton');
     }
 
     function hideMainNav() {
-      mainNav?.classList.remove('nav-hidden');
+      mainNav?.classList.add('nav-hidden');
     }
 
     function updateHeaderBehavior() {
       const currentY = Math.max(0, window.scrollY);
       const delta = currentY - lastHeaderScrollY;
+      const mobileMenuIsOpen = Boolean(
+        mainNav?.querySelector('#menuButton[aria-expanded="true"]')
+      );
 
       setUtilityBarVisibility(currentY);
-      showMainNav();
+
+      if (currentY <= NAV_ALWAYS_VISIBLE_TOP_PX || mobileMenuIsOpen) {
+        upwardTravel = 0;
+        downwardTravel = 0;
+        showMainNav();
+      } else if (delta < 0) {
+        upwardTravel += Math.abs(delta);
+        downwardTravel = 0;
+
+        if (upwardTravel >= NAV_SHOW_AFTER_UP_PX) {
+          showMainNav();
+        }
+      } else if (delta > 0) {
+        downwardTravel += delta;
+        upwardTravel = 0;
+
+        if (downwardTravel >= NAV_HIDE_AFTER_DOWN_PX) {
+          hideMainNav();
+        }
+      }
 
       lastHeaderScrollY = currentY;
       syncHeaderStack();

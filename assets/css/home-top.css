@@ -755,16 +755,19 @@
   z-index: 69;
   background-color: rgba(255, 255, 255, 1);
   border-bottom: 1px solid rgba(226, 232, 240, .82);
+  transform: translateY(0);
   transition:
+    transform .22s ease,
     background-color .55s cubic-bezier(.22,.61,.36,1),
     backdrop-filter .55s cubic-bezier(.22,.61,.36,1),
     -webkit-backdrop-filter .55s cubic-bezier(.22,.61,.36,1),
     box-shadow .42s ease,
     border-color .42s ease;
+  will-change: transform;
 }
 
 #mainNav.nav-hidden {
-  transform: none;
+  transform: translateY(-110%);
 }
 
 body.header-has-scrolled #mainNav {
