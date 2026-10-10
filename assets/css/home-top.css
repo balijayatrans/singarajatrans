@@ -768,8 +768,8 @@ body.header-has-scrolled #mainNav {
 
 .brand-logo-official {
   display: block;
-  width: 224px;
-  max-width: 224px;
+  width: 240px;
+  max-width: 240px;
   height: auto;
   object-fit: contain;
 }
@@ -844,8 +844,8 @@ body.header-has-scrolled #mainNav {
   }
 
   .brand-logo-official {
-    width: 190px;
-    max-width: 190px;
+    width: 200px;
+    max-width: 200px;
     height: auto;
   }
 }
@@ -864,8 +864,8 @@ body.header-has-scrolled #mainNav {
   }
 
   .brand-logo-official {
-    width: 176px;
-    max-width: 176px;
+    width: 188px;
+    max-width: 188px;
     height: auto;
   }
 }
