@@ -864,8 +864,8 @@ body.header-has-scrolled #mainNav {
   }
 
   .brand-logo-official {
-    width: 158px;
-    max-width: 158px;
+    width: 150px;
+    max-width: 150px;
     height: auto;
   }
 }
@@ -999,6 +999,12 @@ body.header-has-scrolled #mainNav {
   .mobile-language-option[aria-disabled="true"] {
     color: #475569;
     opacity: 1;
+    cursor: pointer;
+  }
+
+  .mobile-language-option[aria-disabled="true"]:hover {
+    background: #F8FAFC;
+    color: var(--st-brand-navy);
   }
 
   #menuButton {
