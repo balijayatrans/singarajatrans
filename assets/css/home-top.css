@@ -558,6 +558,17 @@
   --st-brand-gold-soft: #F6EBDD;
 }
 
+/* Global text selection follows the current brand palette. */
+::selection {
+  background: var(--st-brand-gold);
+  color: var(--st-brand-navy);
+}
+
+::-moz-selection {
+  background: var(--st-brand-gold);
+  color: var(--st-brand-navy);
+}
+
 /* Header CTA only. Avoid global href/button selectors. */
 .st-header-cta {
   text-decoration: none;
