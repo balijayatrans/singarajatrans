@@ -757,7 +757,7 @@
   border-bottom: 1px solid rgba(226, 232, 240, .82);
   transform: translateY(0);
   transition:
-    transform .22s ease,
+    transform .30s cubic-bezier(.22,.61,.36,1),
     background-color .55s cubic-bezier(.22,.61,.36,1),
     backdrop-filter .55s cubic-bezier(.22,.61,.36,1),
     -webkit-backdrop-filter .55s cubic-bezier(.22,.61,.36,1),

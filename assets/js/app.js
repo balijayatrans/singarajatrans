@@ -74,8 +74,8 @@ const menuButton = document.getElementById('menuButton');
     let downwardTravel = 0;
 
     const desktopHeaderQuery = window.matchMedia('(min-width: 768px)');
-    const NAV_SHOW_AFTER_UP_PX = 1;
-    const NAV_HIDE_AFTER_DOWN_PX = 12;
+    const NAV_SHOW_AFTER_UP_PX = 4;
+    const NAV_HIDE_AFTER_DOWN_PX = 18;
     const NAV_ALWAYS_VISIBLE_TOP_PX = 22;
 
     function utilityBarHeight() {
