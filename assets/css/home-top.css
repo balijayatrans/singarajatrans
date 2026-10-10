@@ -562,46 +562,46 @@
 }
 
 .st-header-cta-primary {
-  background: var(--st-brand-gold) !important;
-  border: 1px solid var(--st-brand-gold) !important;
-  color: var(--st-brand-navy) !important;
+  background: var(--st-brand-gold);
+  border: 1px solid var(--st-brand-gold);
+  color: var(--st-brand-navy);
 }
 
 .st-header-cta-primary:hover {
-  background: var(--st-brand-gold-hover) !important;
-  border-color: var(--st-brand-gold-hover) !important;
-  color: var(--st-brand-navy) !important;
+  background: var(--st-brand-gold-hover);
+  border-color: var(--st-brand-gold-hover);
+  color: var(--st-brand-navy);
 }
 
 .st-header-cta-secondary {
-  background: #fff !important;
-  border: 1px solid var(--st-brand-navy) !important;
-  color: var(--st-brand-navy) !important;
+  background: #fff;
+  border: 1px solid var(--st-brand-navy);
+  color: var(--st-brand-navy);
 }
 
 .st-header-cta-secondary:hover {
-  background: #F8FAFC !important;
-  border-color: var(--st-brand-gold) !important;
-  color: var(--st-brand-navy) !important;
+  background: #F8FAFC;
+  border-color: var(--st-brand-gold);
+  color: var(--st-brand-navy);
 }
 
 /* Booking tabs: app uses .active/.inactive, not .is-active. */
 .st-service-tab.active,
 .st-service-tab[aria-selected="true"] {
-  background: var(--st-brand-navy) !important;
-  color: #fff !important;
-  box-shadow: 0 6px 16px rgba(15, 23, 42, .18) !important;
+  background: var(--st-brand-navy);
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, .18);
 }
 
 .st-service-tab.active .tab-icon,
 .st-service-tab[aria-selected="true"] .tab-icon {
-  color: var(--st-brand-gold) !important;
+  color: var(--st-brand-gold);
 }
 
 .st-service-tab.inactive:hover,
 .st-service-tab[aria-selected="false"]:hover {
-  background: var(--st-brand-gold-soft) !important;
-  color: var(--st-brand-navy) !important;
+  background: var(--st-brand-gold-soft);
+  color: var(--st-brand-navy);
 }
 
 /* Booking primary actions. Override old orange Tailwind/CSS safely. */
@@ -609,42 +609,42 @@
 .st-booking-shell .airport-search-button,
 .st-booking-shell .charter-search-button,
 .st-booking-shell button[type="submit"] {
-  background: var(--st-brand-navy) !important;
-  border-color: var(--st-brand-navy) !important;
-  color: #fff !important;
-  box-shadow: 0 8px 18px rgba(15, 23, 42, .16) !important;
+  background: var(--st-brand-navy);
+  border-color: var(--st-brand-navy);
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, .16);
 }
 
 .st-booking-shell .travel-search-button:hover,
 .st-booking-shell .airport-search-button:hover,
 .st-booking-shell .charter-search-button:hover,
 .st-booking-shell button[type="submit"]:hover {
-  background: var(--st-brand-navy-hover) !important;
-  border-color: var(--st-brand-navy-hover) !important;
+  background: var(--st-brand-navy-hover);
+  border-color: var(--st-brand-navy-hover);
 }
 
 .st-booking-shell .travel-search-button:active,
 .st-booking-shell .airport-search-button:active,
 .st-booking-shell .charter-search-button:active,
 .st-booking-shell button[type="submit"]:active {
-  background: var(--st-brand-navy-active) !important;
-  border-color: var(--st-brand-navy-active) !important;
+  background: var(--st-brand-navy-active);
+  border-color: var(--st-brand-navy-active);
 }
 
 /* Existing JS still toggles text-singaraja-orange. Visually map that state to gold. */
 .st-booking-shell .trip-mode-label.text-singaraja-orange,
 .st-booking-shell .airport-direction-label.text-singaraja-orange,
 .st-booking-shell .text-singaraja-orange {
-  color: var(--st-brand-gold) !important;
+  color: var(--st-brand-gold);
 }
 
 .st-booking-shell .combo-location {
-  border-color: rgba(217, 164, 65, .38) !important;
-  color: var(--st-brand-navy) !important;
+  border-color: rgba(217, 164, 65, .38);
+  color: var(--st-brand-navy);
 }
 
 .st-booking-shell .combo-location i {
-  color: var(--st-brand-gold) !important;
+  color: var(--st-brand-gold);
 }
 
 /* Focus treatment replaces the old orange ring. */
@@ -654,9 +654,9 @@
 .st-booking-shell select:focus,
 .st-booking-shell button:focus-visible,
 .st-service-tab:focus-visible {
-  border-color: var(--st-brand-gold) !important;
-  outline: none !important;
-  box-shadow: 0 0 0 3px rgba(217, 164, 65, .16) !important;
+  border-color: var(--st-brand-gold);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(217, 164, 65, .16);
 }
 
 .st-booking-shell input[type="radio"]:checked {
