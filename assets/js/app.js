@@ -1025,11 +1025,27 @@
       const optionsWrap = box?.querySelector('.combo-options');
       const emptyEl = box?.querySelector('.combo-empty');
       if (!optionsWrap) return;
+
       const selectedValue = getComboboxSelectedValue(box);
-      optionsWrap.innerHTML = values.map(value => {
-        const activeClass = value === selectedValue ? ' active' : '';
-        return `<button type="button" class="combo-item${activeClass}" data-value="${value}"><i class="${iconClass}"></i><span>${value}</span></button>`;
-      }).join('');
+      optionsWrap.replaceChildren();
+
+      values.forEach(value => {
+        const item = document.createElement('button');
+        item.type = 'button';
+        item.className = 'combo-item';
+        item.dataset.value = value;
+        item.classList.toggle('active', value === selectedValue);
+
+        const icon = document.createElement('i');
+        icon.className = iconClass;
+
+        const label = document.createElement('span');
+        label.textContent = value;
+
+        item.append(icon, label);
+        optionsWrap.appendChild(item);
+      });
+
       if (emptyEl) emptyEl.classList.add('hidden');
     }
 
