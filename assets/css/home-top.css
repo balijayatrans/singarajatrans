@@ -218,50 +218,50 @@
 
 .st-booking-shell .travel-mode-row,
 .st-booking-shell .airport-direction-row {
-  margin-bottom: 9px !important;
+  margin-bottom: 9px;
 }
 
 .st-booking-shell .travel-mode-row label,
 .st-booking-shell .airport-direction-row label {
-  font-size: 10.5px !important;
+  font-size: 10.5px;
 }
 
 .st-booking-shell form > div > label {
-  margin-bottom: 5px !important;
-  color: #64748b !important;
-  font-size: 10px !important;
-  line-height: 1.05 !important;
-  font-weight: 800 !important;
+  margin-bottom: 5px;
+  color: #64748b;
+  font-size: 10px;
+  line-height: 1.05;
+  font-weight: 800;
   text-transform: uppercase;
 }
 
 .st-booking-shell .combo-trigger,
 .st-booking-shell .booking-field {
   min-height: 44px;
-  border-color: #e2e8f0 !important;
-  border-radius: 10px !important;
-  background: #f8fafc !important;
-  box-shadow: none !important;
-  font-size: 12.5px !important;
+  border-color: #e2e8f0;
+  border-radius: 10px;
+  background: #f8fafc;
+  box-shadow: none;
+  font-size: 12.5px;
 }
 
 .st-booking-shell .combo-trigger:focus,
 .st-booking-shell .booking-field:focus,
 .st-booking-shell .booking-field.is-active,
 .st-booking-shell .custom-combobox.is-open .combo-trigger {
-  border-color: #F97316 !important;
-  outline: none !important;
-  background: #fff !important;
-  box-shadow: 0 0 0 3px rgba(249,115,22,.11) !important;
+  border-color: #F97316;
+  outline: none;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(249,115,22,.11);
 }
 
 .st-booking-shell .travel-search-button,
 .st-booking-shell .airport-search-button,
 .st-booking-shell .charter-search-button {
-  min-height: 44px !important;
-  border-radius: 10px !important;
-  font-size: 12px !important;
-  box-shadow: 0 7px 15px rgba(249,115,22,.22) !important;
+  min-height: 44px;
+  border-radius: 10px;
+  font-size: 12px;
+  box-shadow: 0 7px 15px rgba(249,115,22,.22);
 }
 
 
@@ -325,10 +325,10 @@
 
 @media (min-width: 1024px) {
   .st-booking-shell #travelForm {
-    display: grid !important;
+    display: grid;
     grid-template-columns: 1.25fr 1.25fr .92fr .76fr .94fr;
     align-items: end;
-    gap: 12px !important;
+    gap: 12px;
   }
 
   .st-booking-shell #travelForm.round-trip {
@@ -336,17 +336,17 @@
   }
 
   .st-booking-shell #airportForm {
-    display: grid !important;
+    display: grid;
     grid-template-columns: 1.17fr 1.17fr .84fr .70fr .90fr;
     align-items: end;
-    gap: 12px !important;
+    gap: 12px;
   }
 
   .st-booking-shell #charterForm {
-    display: grid !important;
+    display: grid;
     grid-template-columns: 1.08fr 1.08fr .78fr .66fr .66fr .88fr;
     align-items: end;
-    gap: 12px !important;
+    gap: 12px;
   }
 }
 
@@ -528,7 +528,7 @@
   }
 
   .st-booking-shell form {
-    gap: 10px !important;
+    gap: 10px;
   }
 
   .st-booking-shell .combo-trigger,
