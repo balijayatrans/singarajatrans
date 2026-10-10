@@ -882,11 +882,13 @@ body.header-has-scrolled #mainNav {
 }
 
 #languageToggle {
-  transition: background .16s ease, color .16s ease;
+  background: transparent;
+  transition: color .16s ease;
 }
 
-#languageToggle:hover {
-  background: rgba(255,255,255,.08);
+#languageToggle:hover,
+#languageToggle:focus-visible {
+  background: transparent;
 }
 
 #langIdFlag,
@@ -913,7 +915,9 @@ body.header-has-scrolled #mainNav {
 }
 
 #langIdFlag:hover #langIdLabel,
-#langEnFlag:hover #langEnLabel {
+#langEnFlag:hover #langEnLabel,
+#languageToggle:hover #langEnLabel,
+#languageToggle:focus-visible #langEnLabel {
   color: #F1C66B;
 }
 
