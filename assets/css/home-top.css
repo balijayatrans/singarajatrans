@@ -767,9 +767,12 @@ body.header-has-scrolled #mainNav {
 }
 
 .brand-logo-official {
-    height: 48px;
-    max-width: 210px;
-  }
+  display: block;
+  width: 224px;
+  max-width: 224px;
+  height: auto;
+  object-fit: contain;
+}
 
 .st-main-nav-links {
   flex: 1 1 auto;
@@ -841,7 +844,9 @@ body.header-has-scrolled #mainNav {
   }
 
   .brand-logo-official {
-    height: 40px;
+    width: 190px;
+    max-width: 190px;
+    height: auto;
   }
 }
 
@@ -856,6 +861,12 @@ body.header-has-scrolled #mainNav {
 
   .st-main-nav-inner {
     min-height: 60px;
+  }
+
+  .brand-logo-official {
+    width: 176px;
+    max-width: 176px;
+    height: auto;
   }
 }
 
