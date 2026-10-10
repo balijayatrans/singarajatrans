@@ -742,7 +742,7 @@
   right: 0;
   left: 0;
   z-index: 69;
-  background: rgba(255, 255, 255, .98);
+  background: rgba(255, 255, 255, .94);
   border-bottom: 1px solid rgba(226, 232, 240, .82);
   transition:
     top .2s ease,
@@ -844,7 +844,7 @@ body.header-has-scrolled #mainNav {
 
 @media (max-width: 1023px) {
   .st-main-nav-inner {
-    min-height: 58px;
+  min-height: 54px;
     gap: 14px;
   }
 
