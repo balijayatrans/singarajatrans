@@ -10,7 +10,7 @@
 
 .st-ref-hero {
   position: relative;
-  min-height: 430px;
+  min-height: 425px;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -267,51 +267,51 @@
 
 @media (min-width: 1024px) {
   .st-ref-hero {
-    min-height: 430px;
+    min-height: 425px;
   }
 
   .st-ref-hero-media img {
     object-fit: cover;
-    object-position: center 52%;
+    object-position: center 50%;
   }
 
   .st-ref-hero-shade {
     background: linear-gradient(
       90deg,
-      rgba(2,6,23,.76) 0%,
-      rgba(2,6,23,.42) 42%,
-      rgba(2,6,23,.10) 72%,
+      rgba(2,6,23,.74) 0%,
+      rgba(2,6,23,.40) 40%,
+      rgba(2,6,23,.08) 70%,
       rgba(2,6,23,0) 100%
     );
   }
 
   .st-ref-hero-bottom-shade {
-    height: 118px;
-    background: linear-gradient(0deg, rgba(2,6,23,.42), transparent);
+    height: 110px;
+    background: linear-gradient(0deg, rgba(2,6,23,.38), transparent);
   }
 
   .st-ref-hero-content {
-    padding-top: 42px;
-    padding-bottom: 104px;
+    padding-top: 40px;
+    padding-bottom: 102px;
   }
 
   .st-ref-hero-copy {
-    max-width: 510px;
+    max-width: 490px;
   }
 
   .st-ref-hero-copy h1 {
-    max-width: 510px;
-    font-size: clamp(36px, 3vw, 44px);
+    max-width: 490px;
+    font-size: clamp(35px, 2.8vw, 42px);
     line-height: 1.08;
   }
 
   .st-ref-subtitle {
-    max-width: 440px;
+    max-width: 420px;
     font-size: 12px;
   }
 
   .st-ref-badges {
-    margin-top: 16px;
+    margin-top: 15px;
     gap: 8px;
   }
 
@@ -455,7 +455,7 @@
   }
 
   .st-ref-hero-media img {
-    object-position: 55% center;
+    object-position: 58% center;
   }
 
   .st-ref-hero-shade {
