@@ -10,7 +10,7 @@
 
 .st-ref-hero {
   position: relative;
-  min-height: 430px;
+  min-height: 500px;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -139,7 +139,7 @@
 .st-booking-section {
   position: relative;
   z-index: 20;
-  margin-top: -48px;
+  margin-top: -54px;
   padding: 0 0 34px;
   background: transparent;
 }
@@ -147,7 +147,7 @@
 .st-booking-section::before {
   content: "";
   position: absolute;
-  inset: 48px 0 0;
+  inset: 54px 0 0;
   z-index: -1;
   background: #f8fafc;
 }
@@ -267,14 +267,14 @@
 
 @media (min-width: 1024px) {
   .st-ref-hero {
-    min-height: 430px;
+    min-height: clamp(500px, 68vh, 560px);
     aspect-ratio: auto;
     background: #0f172a;
   }
 
   .st-ref-hero-media img {
     object-fit: cover;
-    object-position: center 56%;
+    object-position: center 52%;
   }
 
   .st-ref-hero-shade {
@@ -294,8 +294,8 @@
   }
 
   .st-ref-hero-content {
-    padding-top: 42px;
-    padding-bottom: 108px;
+    padding-top: 54px;
+    padding-bottom: 132px;
   }
 
   .st-ref-hero-copy {
