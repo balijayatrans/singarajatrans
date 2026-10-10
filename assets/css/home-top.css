@@ -267,7 +267,9 @@
 
 @media (min-width: 1024px) {
   .st-ref-hero {
-    min-height: clamp(560px, calc(100svh - 88px), 640px);
+    height: calc(100svh - 86px);
+    min-height: 560px;
+    max-height: 680px;
     aspect-ratio: auto;
     background: #0f172a;
   }
@@ -706,8 +708,8 @@
 #utilityTopBar {
   position: relative;
   z-index: 70;
-  min-height: 26px;
-  max-height: 26px;
+  min-height: 28px;
+  max-height: 28px;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -725,7 +727,7 @@
 }
 
 #utilityTopBar > .container {
-  min-height: 26px;
+  min-height: 28px;
 }
 
 #utilityTopBar .utility-contact-link,
@@ -759,7 +761,7 @@ body.header-has-scrolled #mainNav {
 }
 
 .st-main-nav-inner {
-  min-height: 62px;
+    min-height: 54px;
   gap: 28px;
 }
 
@@ -863,7 +865,7 @@ body.header-has-scrolled #mainNav {
   }
 
   .st-main-nav-inner {
-    min-height: 56px;
+    min-height: 52px;
   }
 
   .brand-logo-official {
@@ -1115,8 +1117,8 @@ body.header-has-scrolled #mainNav {
   display: none !important;
 }
 
-/* Keep Cek Booking visually focused without forcing DOM focus/scroll. */
-.st-header-actions .st-header-cta-secondary {
+/* Cek Booking highlight appears only on pointer hover. */
+.st-header-actions .st-header-cta-secondary:hover {
   border-color: var(--st-brand-gold);
   box-shadow: 0 0 0 3px rgba(217, 164, 65, .12);
 }
