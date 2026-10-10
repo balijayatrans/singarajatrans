@@ -227,7 +227,7 @@
     updateHeaderBehavior();
     syncHeaderStack();
 
-    const bookingWidget = document.getElementById('bookingWidget');
+    const bookingWidget = document.getElementById('bookingExperience');
 
     /* Smart Booking Widget focus
        First interaction deliberately brings the whole widget beneath the fixed
@@ -278,7 +278,7 @@
 
     function isBookingInteractionTarget(target) {
       return Boolean(target?.closest?.(
-        '.booking-field, .combo-trigger, .combo-inline-search, .trip-mode-label, .airport-direction-label, .tab-button, .travel-search-button, .airport-search-button, .charter-search-button'
+        '.booking-field, .combo-trigger, .combo-inline-search, .trip-mode-label, .airport-direction-label, .st-service-tab, .travel-search-button, .airport-search-button, .charter-search-button'
       ));
     }
 
@@ -304,7 +304,7 @@
     }, { passive: true });
 
     function updateTabIcons() {
-      document.querySelectorAll('.tab-button').forEach(btn => {
+      document.querySelectorAll('.st-service-tab').forEach(btn => {
         const icon = btn.querySelector('.tab-icon');
         if (!icon || !icon.dataset.iconActive || !icon.dataset.iconInactive) return;
         icon.src = btn.classList.contains('active') ? icon.dataset.iconActive : icon.dataset.iconInactive;
@@ -314,19 +314,19 @@
 
     if (bookingWidget) bookingWidget.classList.add('travel-active');
 
-    document.querySelectorAll('.tab-button').forEach(button => {
+    document.querySelectorAll('.st-service-tab').forEach(button => {
       button.setAttribute('aria-selected', button.classList.contains('active') ? 'true' : 'false');
       button.addEventListener('click', () => {
         closeAllComboboxes();
         hideDatePicker();
         hideTimePicker();
 
-        document.querySelectorAll('.tab-button').forEach(btn => {
+        document.querySelectorAll('.st-service-tab').forEach(btn => {
           btn.classList.remove('active');
           btn.classList.add('inactive');
           btn.setAttribute('aria-selected', 'false');
         });
-        document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
+        document.querySelectorAll('.st-service-panel').forEach(panel => panel.classList.remove('active'));
 
         button.classList.remove('inactive');
         button.classList.add('active');

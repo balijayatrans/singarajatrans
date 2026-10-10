@@ -1,7 +1,7 @@
 /* Mobile-specific booking widget refinements */
 @media (max-width: 1023px) {
-  #bookingWidget .combo-value:not(.text-slate-500),
-  #bookingWidget .combo-item {
+  #bookingExperience .combo-value:not(.text-slate-500),
+  #bookingExperience .combo-item {
     font-size: 14px !important;
   }
 }
