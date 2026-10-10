@@ -10,7 +10,7 @@
 
 .st-ref-hero {
   position: relative;
-  min-height: 520px;
+  min-height: 455px;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -28,7 +28,7 @@
 
 .st-ref-hero-media img {
   object-fit: cover;
-  object-position: center;
+  object-position: center 48%;
 }
 
 .st-ref-hero-shade {
@@ -44,32 +44,12 @@
   background: linear-gradient(0deg, rgba(2,6,23,.66), transparent);
 }
 
-.st-ref-fleet {
-  position: absolute;
-  z-index: 1;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 67%;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  padding: 0 18px 24px 0;
-  pointer-events: none;
-}
-
-.st-ref-fleet svg {
-  width: 100%;
-  max-width: 850px;
-  height: auto;
-}
-
 .st-ref-hero-content {
   position: relative;
   z-index: 2;
   width: 100%;
-  padding-top: 64px;
-  padding-bottom: 118px;
+  padding-top: 48px;
+  padding-bottom: 102px;
 }
 
 .st-ref-hero-copy {
@@ -159,7 +139,7 @@
 .st-booking-section {
   position: relative;
   z-index: 20;
-  margin-top: -48px;
+  margin-top: -42px;
   padding: 0 0 34px;
   background: transparent;
 }
@@ -167,7 +147,7 @@
 .st-booking-section::before {
   content: "";
   position: absolute;
-  inset: 48px 0 0;
+  inset: 42px 0 0;
   z-index: -1;
   background: #f8fafc;
 }
@@ -284,6 +264,22 @@
   box-shadow: 0 7px 15px rgba(249,115,22,.22) !important;
 }
 
+
+@media (min-width: 1024px) {
+  .st-ref-hero {
+    min-height: 455px;
+  }
+
+  .st-ref-hero-media img {
+    object-position: center 48%;
+  }
+
+  .st-ref-hero-content {
+    padding-top: 48px;
+    padding-bottom: 102px;
+  }
+}
+
 @media (min-width: 1024px) {
   .st-booking-shell #travelForm {
     display: grid !important;
@@ -385,12 +381,7 @@
   .st-ref-hero {
     min-height: 560px;
   }
-
-  .st-ref-fleet {
-    display: none;
-  }
-
-  .st-ref-hero-content {
+.st-ref-hero-content {
     padding-top: 64px;
     padding-bottom: 120px;
   }
