@@ -761,7 +761,7 @@ body.header-has-scrolled #mainNav {
 }
 
 .st-main-nav-inner {
-    min-height: 54px;
+  min-height: 64px;
   gap: 28px;
 }
 
