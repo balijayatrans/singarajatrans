@@ -767,11 +767,9 @@ body.header-has-scrolled #mainNav {
 }
 
 .brand-logo-official {
-  display: block;
-  width: auto;
-  height: 43px;
-  object-fit: contain;
-}
+    height: 48px;
+    max-width: 210px;
+  }
 
 .st-main-nav-links {
   flex: 1 1 auto;
