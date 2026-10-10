@@ -674,8 +674,6 @@
       trigger?.setAttribute?.('aria-expanded', 'false');
     }
 
-    function closeAllComboboxes(except) {
-  
     const SINGARAJA_AIRPORT_MARKERS = Array.isArray(window.SINGARAJA_AIRPORT_MARKERS)
       ? window.SINGARAJA_AIRPORT_MARKERS
       : [
@@ -891,7 +889,8 @@
       // Map preview intentionally removed from booking dropdowns for a lighter mobile flow.
     }
 
-    comboboxes.forEach(box => {
+    function closeAllComboboxes(except) {
+      comboboxes.forEach(box => {
         if (box !== except) {
           box.querySelector('.combo-dropdown')?.classList.add('hidden');
           box.classList.remove('is-open');
@@ -1071,6 +1070,8 @@
       const emptyEl = box.querySelector('.combo-empty');
       const locationBtn = box.querySelector('.combo-location');
 
+      trigger?.setAttribute('aria-expanded', 'false');
+
       function filterItems(keyword) {
         const query = keyword.trim().toLowerCase();
         const items = getComboboxItems(box);
@@ -1091,6 +1092,7 @@
         } else {
           dropdown?.classList.add('hidden');
           box.classList.remove('is-open');
+          trigger.setAttribute('aria-expanded', 'false');
           restoreComboboxDisplay(box);
           resetComboboxSearch(box);
         }
