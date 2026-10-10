@@ -881,6 +881,27 @@ body.header-has-scrolled #mainNav {
   overflow: hidden;
 }
 
+#languageToggle {
+  transition: background .16s ease, color .16s ease;
+}
+
+#languageToggle:hover {
+  background: rgba(255,255,255,.08);
+}
+
+#langIdFlag,
+#langEnFlag {
+  opacity: 1;
+}
+
+#langIdLabel {
+  color: #F1C66B;
+}
+
+#langEnLabel {
+  color: #FFFFFF;
+}
+
 
 /* Mobile header/menu refinement */
 @media (max-width: 1023px) {
