@@ -2014,13 +2014,6 @@
       input.addEventListener('change', () => syncAirportDirection(input));
     });
 
-    document.querySelectorAll('.airport-direction-label').forEach(label => {
-      label.addEventListener('click', () => {
-        const input = label.querySelector('.airport-direction');
-        requestAnimationFrame(() => syncAirportDirection(input));
-      });
-    });
-
     const defaultAirportDirection = document.querySelector('.airport-direction:checked')
       || document.querySelector('.airport-direction[data-direction="from-airport"]');
     syncAirportDirection(defaultAirportDirection);
