@@ -1022,3 +1022,12 @@ body.header-has-scrolled #mainNav {
     line-height: 1;
   }
 }
+
+#utilityTopBar .utility-contact-link {
+  color: #fff;
+  transition: color .18s ease;
+}
+
+#utilityTopBar .utility-contact-link:hover {
+  color: var(--st-brand-gold);
+}
