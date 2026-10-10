@@ -66,7 +66,7 @@
     const utilityTopBar = document.getElementById('utilityTopBar');
     const mainNav = document.getElementById('mainNav');
     const mainNavSpacer = document.getElementById('mainNavSpacer');
-    const heroSection = document.querySelector('header.hero-pattern');
+    const heroSection = document.getElementById('hero');
 
     let headerScrollTicking = false;
     let lastHeaderScrollY = Math.max(0, window.scrollY);
@@ -314,8 +314,37 @@
 
     if (bookingWidget) bookingWidget.classList.add('travel-active');
 
-    document.querySelectorAll('.st-service-tab').forEach(button => {
-      button.setAttribute('aria-selected', button.classList.contains('active') ? 'true' : 'false');
+    const serviceTabs = Array.from(document.querySelectorAll('.st-service-tab'));
+
+    function syncServiceTabFocusState(activeButton) {
+      serviceTabs.forEach(btn => {
+        const isActive = btn === activeButton;
+        btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        btn.tabIndex = isActive ? 0 : -1;
+      });
+    }
+
+    serviceTabs.forEach(button => {
+      const initiallyActive = button.classList.contains('active');
+      button.setAttribute('aria-selected', initiallyActive ? 'true' : 'false');
+      button.tabIndex = initiallyActive ? 0 : -1;
+
+      button.addEventListener('keydown', (event) => {
+        if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+        event.preventDefault();
+
+        const currentIndex = serviceTabs.indexOf(button);
+        let nextIndex = currentIndex;
+
+        if (event.key === 'ArrowRight') nextIndex = (currentIndex + 1) % serviceTabs.length;
+        if (event.key === 'ArrowLeft') nextIndex = (currentIndex - 1 + serviceTabs.length) % serviceTabs.length;
+        if (event.key === 'Home') nextIndex = 0;
+        if (event.key === 'End') nextIndex = serviceTabs.length - 1;
+
+        serviceTabs[nextIndex]?.focus();
+        serviceTabs[nextIndex]?.click();
+      });
+
       button.addEventListener('click', () => {
         closeAllComboboxes();
         hideDatePicker();
@@ -330,7 +359,7 @@
 
         button.classList.remove('inactive');
         button.classList.add('active');
-        button.setAttribute('aria-selected', 'true');
+        syncServiceTabFocusState(button);
         document.getElementById('tab-' + button.dataset.tab)?.classList.add('active');
 
         const activeTab = button.dataset.tab;
