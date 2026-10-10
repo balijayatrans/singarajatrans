@@ -63,6 +63,7 @@ const menuButton = document.getElementById('menuButton');
     routePrev?.addEventListener('click', () => scrollRouteTickets(-1));
     routeNext?.addEventListener('click', () => scrollRouteTickets(1));
 
+    const siteHeaderStack = document.getElementById('siteHeaderStack');
     const utilityTopBar = document.getElementById('utilityTopBar');
     const mainNav = document.getElementById('mainNav');
     const mainNavSpacer = document.getElementById('mainNavSpacer');
@@ -76,7 +77,7 @@ const menuButton = document.getElementById('menuButton');
     const desktopHeaderQuery = window.matchMedia('(min-width: 768px)');
     const NAV_SHOW_AFTER_UP_PX = 4;
     const NAV_HIDE_AFTER_DOWN_PX = 1;
-    const NAV_ALWAYS_VISIBLE_TOP_PX = 22;
+    const NAV_ALWAYS_VISIBLE_TOP_PX = 8;
 
     function utilityBarHeight() {
       if (!utilityTopBar || !desktopHeaderQuery.matches) return 0;
@@ -126,10 +127,11 @@ const menuButton = document.getElementById('menuButton');
 
     function showMainNav() {
       mainNav?.classList.remove('nav-hidden');
+      siteHeaderStack?.classList.remove('header-stack-hidden');
     }
 
     function hideMainNav() {
-      mainNav?.classList.add('nav-hidden');
+      siteHeaderStack?.classList.add('header-stack-hidden');
     }
 
     function updateHeaderBehavior() {
@@ -155,14 +157,10 @@ const menuButton = document.getElementById('menuButton');
       } else if (delta > 0) {
         downwardTravel += delta;
         upwardTravel = 0;
-        setUtilityBarVisibility(currentY);
 
         if (downwardTravel >= NAV_HIDE_AFTER_DOWN_PX) {
-          utilityTopBar?.classList.add('is-hidden');
           hideMainNav();
         }
-      } else {
-        setUtilityBarVisibility(currentY);
       }
 
       lastHeaderScrollY = currentY;

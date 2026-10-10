@@ -55,11 +55,13 @@
 <link href="https://images.unsplash.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
 <link href="assets/css/tailwind.css?v=20261010-prod-1" rel="stylesheet"/>
-<link href="assets/css/home-top.css?v=20261011-nav-autohide-soft-1" rel="stylesheet"/>
+<link href="assets/css/home-top.css?v=20261011-header-stack-1" rel="stylesheet"/>
 <link href="assets/css/route-tickets.css?v=20261010-layout-fix-1" rel="stylesheet"/>
 <link href="assets/css/mobile.css?v=20261010-layout-fix-1" rel="stylesheet"/>
 </head>
 <body class="text-slate-800 antialiased" id="top">
+<!-- HEADER STACK: utility bar + main nav move together on downward scroll -->
+<div id="siteHeaderStack">
 <!-- TOP UTILITY BAR: auto hides on scroll -->
 <div class="bg-[var(--reference-navy)] text-white text-[11px] px-4 hidden md:block" id="utilityTopBar">
 <div class="container mx-auto flex justify-between items-center max-w-7xl">
@@ -149,6 +151,7 @@
 </div>
 </div>
 </nav>
+</div>
 <div aria-hidden="true" id="mainNavSpacer"></div>
 <!-- MAIN CONTENT: semantic landmark for the page purpose -->
 <!--
@@ -896,6 +899,6 @@
 <button class="px-3.5 py-2 rounded-xl bg-singaraja-gold text-white text-sm font-semibold hover:bg-singaraja-darkGold transition" id="timePickerDone" type="button">Selesai</button>
 </div>
 </div>
-<script src="assets/js/app.js?v=20261011-nav-stack-hide-1"></script>
+<script src="assets/js/app.js?v=20261011-header-stack-1"></script>
 </body>
 </html>

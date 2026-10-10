@@ -716,6 +716,19 @@
 
 
 /* Header precision pass: keep structure/functionality, refine geometry and sticky states. */
+#siteHeaderStack {
+  position: sticky;
+  top: 0;
+  z-index: 70;
+  transform: translateY(0);
+  transition: transform .30s cubic-bezier(.22,.61,.36,1);
+  will-change: transform;
+}
+
+#siteHeaderStack.header-stack-hidden {
+  transform: translateY(-100%);
+}
+
 #utilityTopBar {
   position: relative;
   z-index: 70;
@@ -726,7 +739,7 @@
   overflow: hidden;
   background: var(--st-brand-navy);
   border-bottom: 1px solid rgba(255, 255, 255, .08);
-  transition: max-height .18s ease, min-height .18s ease, opacity .16s ease;
+  transition: opacity .18s ease;
 }
 
 #utilityTopBar.is-hidden {
@@ -748,10 +761,10 @@
 }
 
 #mainNav {
-  position: sticky;
-  top: 0;
-  right: 0;
-  left: 0;
+  position: relative;
+  top: auto;
+  right: auto;
+  left: auto;
   z-index: 69;
   background-color: rgba(255, 255, 255, 1);
   border-bottom: 1px solid rgba(226, 232, 240, .82);
@@ -767,7 +780,7 @@
 }
 
 #mainNav.nav-hidden {
-  transform: translateY(-110%);
+  transform: none;
 }
 
 body.header-has-scrolled #mainNav {
@@ -883,7 +896,7 @@ body.header-has-scrolled #mainNav {
   }
 
   #mainNav {
-    top: 0;
+    top: auto;
   }
 
   .st-main-nav-inner {
