@@ -114,7 +114,7 @@ const menuButton = document.getElementById('menuButton');
       document.body.classList.toggle('header-has-scrolled', window.scrollY > 4);
     }
 
-    function setUtilityBarVisibility(scrollY = Math.max(0, window.scrollY)) {
+    function setUtilityBarVisibility(visible) {
       if (!utilityTopBar) return;
 
       if (!desktopHeaderQuery.matches) {
@@ -122,7 +122,7 @@ const menuButton = document.getElementById('menuButton');
         return;
       }
 
-      utilityTopBar.classList.toggle('is-hidden', scrollY > 0);
+      utilityTopBar.classList.toggle('is-hidden', !visible);
     }
 
     function showMainNav() {
@@ -144,14 +144,14 @@ const menuButton = document.getElementById('menuButton');
       if (currentY <= NAV_ALWAYS_VISIBLE_TOP_PX || mobileMenuIsOpen) {
         upwardTravel = 0;
         downwardTravel = 0;
-        setUtilityBarVisibility(0);
+        setUtilityBarVisibility(true);
         showMainNav();
       } else if (delta < 0) {
         upwardTravel += Math.abs(delta);
         downwardTravel = 0;
-        setUtilityBarVisibility(currentY);
 
         if (upwardTravel >= NAV_SHOW_AFTER_UP_PX) {
+          setUtilityBarVisibility(false);
           showMainNav();
         }
       } else if (delta > 0) {
@@ -159,6 +159,7 @@ const menuButton = document.getElementById('menuButton');
         upwardTravel = 0;
 
         if (downwardTravel >= NAV_HIDE_AFTER_DOWN_PX) {
+          setUtilityBarVisibility(true);
           hideMainNav();
         }
       }
@@ -180,7 +181,7 @@ const menuButton = document.getElementById('menuButton');
     window.addEventListener('resize', () => {
       window.requestAnimationFrame(() => {
         lastHeaderScrollY = Math.max(0, window.scrollY);
-        setUtilityBarVisibility(lastHeaderScrollY);
+        setUtilityBarVisibility(lastHeaderScrollY <= NAV_ALWAYS_VISIBLE_TOP_PX);
         showMainNav();
         syncHeaderStack();
 
@@ -204,14 +205,14 @@ const menuButton = document.getElementById('menuButton');
       lastHeaderScrollY = Math.max(0, window.scrollY);
       upwardTravel = 0;
       downwardTravel = 0;
-      setUtilityBarVisibility(lastHeaderScrollY);
+      setUtilityBarVisibility(lastHeaderScrollY <= NAV_ALWAYS_VISIBLE_TOP_PX);
       showMainNav();
       syncHeaderStack();
     });
 
     window.addEventListener('load', () => {
       lastHeaderScrollY = Math.max(0, window.scrollY);
-      setUtilityBarVisibility(lastHeaderScrollY);
+      setUtilityBarVisibility(lastHeaderScrollY <= NAV_ALWAYS_VISIBLE_TOP_PX);
       showMainNav();
       syncHeaderStack();
     });
