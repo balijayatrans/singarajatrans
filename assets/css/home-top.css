@@ -277,6 +277,7 @@
   .st-ref-hero-media img {
     object-fit: cover;
     object-position: center 50%;
+    transform: scaleX(-1);
   }
 
   .st-ref-hero-shade {
