@@ -267,14 +267,14 @@
 
 @media (min-width: 1024px) {
   .st-ref-hero {
-    min-height: clamp(500px, 68vh, 560px);
+    min-height: clamp(560px, calc(100svh - 88px), 640px);
     aspect-ratio: auto;
     background: #0f172a;
   }
 
   .st-ref-hero-media img {
     object-fit: cover;
-    object-position: center 52%;
+    object-position: center 50%;
   }
 
   .st-ref-hero-shade {
@@ -704,25 +704,28 @@
 
 /* Header precision pass: keep structure/functionality, refine geometry and sticky states. */
 #utilityTopBar {
-  position: fixed;
-  inset: 0 0 auto;
+  position: relative;
   z-index: 70;
-  min-height: 24px;
+  min-height: 26px;
+  max-height: 26px;
   display: flex;
   align-items: center;
+  overflow: hidden;
   background: var(--st-brand-navy);
   border-bottom: 1px solid rgba(255, 255, 255, .08);
-  transition: transform .16s ease, opacity .16s ease;
+  transition: max-height .18s ease, min-height .18s ease, opacity .16s ease;
 }
 
 #utilityTopBar.is-hidden {
-  transform: translateY(-100%);
+  min-height: 0;
+  max-height: 0;
   opacity: 0;
   pointer-events: none;
+  border-bottom-color: transparent;
 }
 
 #utilityTopBar > .container {
-  min-height: 24px;
+  min-height: 26px;
 }
 
 #utilityTopBar .utility-contact-link,
@@ -732,8 +735,8 @@
 }
 
 #mainNav {
-  position: fixed;
-  top: var(--utility-visible-height, 0px);
+  position: sticky;
+  top: 0;
   right: 0;
   left: 0;
   z-index: 69;
@@ -747,7 +750,7 @@
 }
 
 #mainNav.nav-hidden {
-  transform: translateY(calc(-100% - var(--utility-visible-height, 0px)));
+  transform: none;
 }
 
 body.header-has-scrolled #mainNav {
@@ -756,7 +759,7 @@ body.header-has-scrolled #mainNav {
 }
 
 .st-main-nav-inner {
-  min-height: 68px;
+  min-height: 62px;
   gap: 28px;
 }
 
@@ -839,7 +842,7 @@ body.header-has-scrolled #mainNav {
 
 @media (max-width: 1023px) {
   .st-main-nav-inner {
-    min-height: 62px;
+    min-height: 58px;
     gap: 14px;
   }
 
@@ -860,7 +863,7 @@ body.header-has-scrolled #mainNav {
   }
 
   .st-main-nav-inner {
-    min-height: 60px;
+    min-height: 56px;
   }
 
   .brand-logo-official {
@@ -1105,4 +1108,15 @@ body.header-has-scrolled #mainNav {
 
 #utilityTopBar .utility-contact-link:hover {
   color: var(--st-brand-gold);
+}
+
+
+#mainNavSpacer {
+  display: none !important;
+}
+
+/* Keep Cek Booking visually focused without forcing DOM focus/scroll. */
+.st-header-actions .st-header-cta-secondary {
+  border-color: var(--st-brand-gold);
+  box-shadow: 0 0 0 3px rgba(217, 164, 65, .12);
 }
