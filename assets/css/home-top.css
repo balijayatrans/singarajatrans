@@ -10,7 +10,7 @@
 
 .st-ref-hero {
   position: relative;
-  min-height: 0;
+  min-height: 430px;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -267,34 +267,35 @@
 
 @media (min-width: 1024px) {
   .st-ref-hero {
-    min-height: 0;
-    aspect-ratio: 3 / 2;
+    min-height: 430px;
+    aspect-ratio: auto;
     background: #0f172a;
   }
 
   .st-ref-hero-media img {
-    object-fit: contain;
-    object-position: center center;
+    object-fit: cover;
+    object-position: center 56%;
   }
 
   .st-ref-hero-shade {
     background: linear-gradient(
       90deg,
-      rgba(2,6,23,.78) 0%,
-      rgba(2,6,23,.44) 38%,
-      rgba(2,6,23,.10) 68%,
-      rgba(2,6,23,0) 100%
+      rgba(2,6,23,.84) 0%,
+      rgba(2,6,23,.62) 26%,
+      rgba(2,6,23,.34) 44%,
+      rgba(2,6,23,.12) 60%,
+      rgba(2,6,23,0) 78%
     );
   }
 
   .st-ref-hero-bottom-shade {
-    height: 110px;
-    background: linear-gradient(0deg, rgba(2,6,23,.38), transparent);
+    height: 108px;
+    background: linear-gradient(0deg, rgba(2,6,23,.34), transparent);
   }
 
   .st-ref-hero-content {
-    padding-top: 52px;
-    padding-bottom: 150px;
+    padding-top: 42px;
+    padding-bottom: 108px;
   }
 
   .st-ref-hero-copy {
