@@ -1,3 +1,19 @@
+    function syncBrandLogoFallback() {
+      document.querySelectorAll('.brand-logo-official').forEach(logo => {
+        const fallback = logo.nextElementSibling;
+        const showFallback = () => {
+          logo.style.display = 'none';
+          fallback?.classList.remove('hidden');
+          fallback?.classList.add('inline-flex');
+        };
+
+        logo.addEventListener('error', showFallback, { once: true });
+        if (logo.complete && logo.naturalWidth === 0) showFallback();
+      });
+    }
+
+    syncBrandLogoFallback();
+
     const menuButton = document.getElementById('menuButton');
     const mobileMenu = document.getElementById('mobileMenu');
     const mobileLanguageSelector = document.getElementById('mobileLanguageSelector');
