@@ -662,3 +662,41 @@
 .st-booking-shell input[type="radio"]:checked {
   accent-color: var(--st-brand-gold);
 }
+
+/* About section visual tokens moved from inline styles for CSP readiness. */
+.st-about-section {
+  background: linear-gradient(180deg, #FFF7ED 0%, #FFEDD5 52%, #FFF4E6 100%);
+  border-top: 1px solid #FED7AA;
+  border-bottom: 1px solid #FED7AA;
+}
+
+.st-about-pattern {
+  background-image: radial-gradient(circle at 2px 2px, rgba(148,163,184,.26) 1px, transparent 0);
+  background-size: 30px 30px;
+}
+
+.st-about-top-glow {
+  background: linear-gradient(180deg, rgba(255,255,255,.78) 0%, rgba(248,250,252,.15) 70%, rgba(248,250,252,0) 100%);
+}
+
+.st-about-glow-left {
+  background: rgba(251,146,60,.10);
+}
+
+.st-about-glow-right {
+  background: rgba(249,115,22,.08);
+}
+
+.st-about-kicker {
+  color: #EA580C;
+}
+
+.st-about-stat {
+  border-color: #FED7AA;
+  box-shadow: 0 10px 24px rgba(249,115,22,.08);
+}
+
+.st-about-stat-value {
+  color: #F97316;
+}
+
