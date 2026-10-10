@@ -7,12 +7,19 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        gold: {
+          50: '#FBF7EE',
+          100: '#F6EBDD',
+          200: '#E7CEA0',
+          400: '#D9A441',
+          600: '#C58F32'
+        },
         singaraja: {
-          orange: '#F97316',
-          darkOrange: '#EA580C',
+          gold: '#D9A441',
+          darkGold: '#C58F32',
           navy: '#0F172A',
           slate: '#1E293B',
-          soft: '#FFF7ED'
+          soft: '#F6EBDD'
         }
       },
       fontFamily: {

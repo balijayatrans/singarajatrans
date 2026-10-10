@@ -21,7 +21,7 @@
   align-items: center;
   gap: 8px;
   margin-bottom: 8px;
-  color: #F97316;
+  color: #D9A441;
   font-size: 11px;
   font-weight: 800;
   letter-spacing: .15em;
@@ -105,13 +105,13 @@
 
 .st-route-ticket:hover {
   transform: translateY(-2px);
-  border-color: #fed7aa;
+  border-color: #E7CEA0;
   box-shadow: 0 10px 25px rgba(15,23,42,.075);
 }
 
 .st-route-ticket.highlighted-card {
-  border-color: #F97316;
-  box-shadow: 0 9px 26px rgba(249,115,22,.14);
+  border-color: #D9A441;
+  box-shadow: 0 9px 26px rgba(217,164,65,.14);
 }
 
 .st-route-ticket-top {
@@ -183,7 +183,7 @@
   height: 7px;
   flex: 0 0 7px;
   border-radius: 999px;
-  background: #F97316;
+  background: #D9A441;
 }
 
 .st-route-path b {
@@ -194,14 +194,14 @@
 }
 
 .st-route-path i {
-  color: #F97316;
+  color: #D9A441;
   font-size: 10px;
 }
 
 .st-route-path small {
   display: block;
   margin-top: 6px;
-  color: #F97316;
+  color: #D9A441;
   font-size: 8.5px;
   line-height: 1.15;
   font-weight: 700;
@@ -244,11 +244,11 @@
 }
 
 .highlighted-card .st-ticket-cutout {
-  border-color: #F97316;
+  border-color: #D9A441;
 }
 
 .highlighted-card .st-ticket-divider::before {
-  border-color: #fed7aa;
+  border-color: #E7CEA0;
 }
 
 .st-route-ticket-bottom {
@@ -269,7 +269,7 @@
 
 .st-route-ticket-bottom strong {
   display: block;
-  color: #F97316;
+  color: #0F172A;
   font-size: 20px;
   line-height: 1.1;
   font-weight: 800;
@@ -295,16 +295,16 @@
   flex: 0 0 auto;
   padding: 0 14px;
   border-radius: 10px;
-  background: #F97316;
+  background: #0F172A;
   color: #fff;
   font-size: 10px;
   font-weight: 800;
-  box-shadow: 0 6px 14px rgba(249,115,22,.20);
+  box-shadow: 0 6px 14px rgba(15,23,42,.18);
   transition: background .18s ease, transform .18s ease;
 }
 
 .st-route-book-button:hover {
-  background: #EA580C;
+  background: #162033;
   transform: translateY(-1px);
 }
 

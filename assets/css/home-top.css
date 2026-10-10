@@ -66,7 +66,7 @@
   letter-spacing: .25em;
 }
 
-.st-ref-kicker span { color: #FB923C; }
+.st-ref-kicker span { color: #D9A441; }
 
 .st-ref-hero-copy h1 {
   margin: 0;
@@ -195,14 +195,14 @@
 }
 
 .st-service-tab.active {
-  background: #F97316;
+  background: #D9A441;
   color: #fff;
-  box-shadow: 0 5px 12px rgba(249,115,22,.20);
+  box-shadow: 0 5px 12px rgba(217,164,65,.20);
 }
 
 .st-service-tab.inactive:hover {
   background: #f1f5f9;
-  color: #EA580C;
+  color: #C58F32;
 }
 
 .st-service-tab .tab-icon { font-size: 13px; }
@@ -249,10 +249,10 @@
 .st-booking-shell .booking-field:focus,
 .st-booking-shell .booking-field.is-active,
 .st-booking-shell .custom-combobox.is-open .combo-trigger {
-  border-color: #F97316;
+  border-color: #D9A441;
   outline: none;
   background: #fff;
-  box-shadow: 0 0 0 3px rgba(249,115,22,.11);
+  box-shadow: 0 0 0 3px rgba(217,164,65,.11);
 }
 
 .st-booking-shell .travel-search-button,
@@ -261,7 +261,7 @@
   min-height: 44px;
   border-radius: 10px;
   font-size: 12px;
-  box-shadow: 0 7px 15px rgba(249,115,22,.22);
+  box-shadow: 0 7px 15px rgba(217,164,65,.22);
 }
 
 
@@ -376,7 +376,7 @@
 
 .st-quick-route-card:hover {
   transform: translateY(-1px);
-  border-color: #fdba74;
+  border-color: #E7CEA0;
   box-shadow: 0 7px 18px rgba(15,23,42,.07);
 }
 
@@ -402,7 +402,7 @@
 .st-quick-route-card b {
   display: block;
   margin-top: 3px;
-  color: #F97316;
+  color: #D9A441;
   font-size: 10.5px;
   line-height: 1.1;
   font-weight: 900;
@@ -631,10 +631,10 @@
   border-color: var(--st-brand-navy-active);
 }
 
-/* Existing JS still toggles text-singaraja-orange. Visually map that state to gold. */
-.st-booking-shell .trip-mode-label.text-singaraja-orange,
-.st-booking-shell .airport-direction-label.text-singaraja-orange,
-.st-booking-shell .text-singaraja-orange {
+/* Existing JS still toggles text-singaraja-gold. Visually map that state to gold. */
+.st-booking-shell .trip-mode-label.text-singaraja-gold,
+.st-booking-shell .airport-direction-label.text-singaraja-gold,
+.st-booking-shell .text-singaraja-gold {
   color: var(--st-brand-gold);
 }
 
@@ -665,9 +665,9 @@
 
 /* About section visual tokens moved from inline styles for CSP readiness. */
 .st-about-section {
-  background: linear-gradient(180deg, #FFF7ED 0%, #FFEDD5 52%, #FFF4E6 100%);
-  border-top: 1px solid #FED7AA;
-  border-bottom: 1px solid #FED7AA;
+  background: linear-gradient(180deg, #FBF7EE 0%, #F6EBDD 52%, #FBF7EE 100%);
+  border-top: 1px solid #E7CEA0;
+  border-bottom: 1px solid #E7CEA0;
 }
 
 .st-about-pattern {
@@ -680,23 +680,23 @@
 }
 
 .st-about-glow-left {
-  background: rgba(251,146,60,.10);
+  background: rgba(217,164,65,.10);
 }
 
 .st-about-glow-right {
-  background: rgba(249,115,22,.08);
+  background: rgba(217,164,65,.08);
 }
 
 .st-about-kicker {
-  color: #EA580C;
+  color: #C58F32;
 }
 
 .st-about-stat {
-  border-color: #FED7AA;
-  box-shadow: 0 10px 24px rgba(249,115,22,.08);
+  border-color: #E7CEA0;
+  box-shadow: 0 10px 24px rgba(217,164,65,.08);
 }
 
 .st-about-stat-value {
-  color: #F97316;
+  color: #D9A441;
 }
 

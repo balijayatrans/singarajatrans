@@ -1021,7 +1021,7 @@
       }
     }
 
-    function setComboboxOptions(box, values, iconClass = 'fas fa-location-dot text-singaraja-orange') {
+    function setComboboxOptions(box, values, iconClass = 'fas fa-location-dot text-singaraja-gold') {
       const optionsWrap = box?.querySelector('.combo-options');
       const emptyEl = box?.querySelector('.combo-empty');
       if (!optionsWrap) return;
@@ -1371,11 +1371,11 @@
         const dot = label?.querySelector('.trip-radio-dot');
         if (!label || !dot) return;
         if (input === activeInput) {
-          label.classList.add('text-singaraja-orange');
+          label.classList.add('text-singaraja-gold');
           label.classList.remove('text-slate-500');
           dot.classList.remove('opacity-0');
         } else {
-          label.classList.remove('text-singaraja-orange');
+          label.classList.remove('text-singaraja-gold');
           label.classList.add('text-slate-500');
           dot.classList.add('opacity-0');
         }
@@ -1952,11 +1952,11 @@
         const dot = label?.querySelector('.airport-radio-dot');
         if (!label || !dot) return;
         if (input === activeInput) {
-          label.classList.add('text-singaraja-orange');
+          label.classList.add('text-singaraja-gold');
           label.classList.remove('text-slate-500');
           dot.classList.remove('opacity-0');
         } else {
-          label.classList.remove('text-singaraja-orange');
+          label.classList.remove('text-singaraja-gold');
           label.classList.add('text-slate-500');
           dot.classList.add('opacity-0');
         }
@@ -2006,7 +2006,7 @@
         fromAirport ? [airport] : airportLocations,
         airport,
         fromAirport,
-        fromAirport ? 'fas fa-plane-arrival text-slate-400' : 'fas fa-location-dot text-singaraja-orange',
+        fromAirport ? 'fas fa-plane-arrival text-slate-400' : 'fas fa-location-dot text-singaraja-gold',
         'Pilih kota asal',
         !fromAirport
       );
@@ -2018,7 +2018,7 @@
         fromAirport ? airportLocations : [airport],
         airport,
         !fromAirport,
-        fromAirport ? 'fas fa-location-dot text-singaraja-orange' : 'fas fa-plane-departure text-slate-400',
+        fromAirport ? 'fas fa-location-dot text-singaraja-gold' : 'fas fa-plane-departure text-slate-400',
         'Pilih kota tujuan',
         false
       );
@@ -2026,11 +2026,11 @@
       if (airportPickupIcon) {
         airportPickupIcon.className = fromAirport
           ? 'fas fa-plane-arrival absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400'
-          : 'fas fa-location-dot absolute left-3.5 top-1/2 -translate-y-1/2 text-singaraja-orange';
+          : 'fas fa-location-dot absolute left-3.5 top-1/2 -translate-y-1/2 text-singaraja-gold';
       }
       if (airportDestinationIcon) {
         airportDestinationIcon.className = fromAirport
-          ? 'fas fa-location-dot absolute left-3.5 top-1/2 -translate-y-1/2 text-singaraja-orange'
+          ? 'fas fa-location-dot absolute left-3.5 top-1/2 -translate-y-1/2 text-singaraja-gold'
           : 'fas fa-plane-departure absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400';
       }
     }
