@@ -7,8 +7,17 @@
           fallback?.classList.add('inline-flex');
         };
 
-        logo.addEventListener('error', showFallback, { once: true });
-        if (logo.complete && logo.naturalWidth === 0) showFallback();
+        const showLogo = () => {
+          logo.style.display = '';
+          fallback?.classList.add('hidden');
+          fallback?.classList.remove('inline-flex');
+        };
+        logo.addEventListener('load', showLogo);
+        logo.addEventListener('error', showFallback);
+        if (logo.complete) {
+          if (logo.naturalWidth > 0) showLogo();
+          else showFallback();
+        }
       });
     }
 
