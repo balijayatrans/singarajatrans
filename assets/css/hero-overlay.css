@@ -1,0 +1,51 @@
+/* SINGARAJA TRANS hero dark overlay
+   Kept separate from the main stylesheet so the large production CSS remains untouched. */
+.premium-hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.premium-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(2, 6, 23, 0.84) 0%,
+      rgba(2, 6, 23, 0.76) 30%,
+      rgba(2, 6, 23, 0.50) 58%,
+      rgba(2, 6, 23, 0.22) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(2, 6, 23, 0.22) 0%,
+      rgba(2, 6, 23, 0.36) 100%
+    );
+}
+
+.premium-hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .premium-hero::before {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(2, 6, 23, 0.90) 0%,
+        rgba(2, 6, 23, 0.82) 40%,
+        rgba(2, 6, 23, 0.58) 70%,
+        rgba(2, 6, 23, 0.28) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(2, 6, 23, 0.28) 0%,
+        rgba(2, 6, 23, 0.44) 100%
+      );
+  }
+}
