@@ -201,9 +201,19 @@
         setUtilityBarVisibility(lastHeaderScrollY);
         showMainNav();
         syncHeaderStack();
+
         if (window.innerWidth >= 1024) {
           closeMobileMenu();
           closeMobileLanguageMenu();
+        }
+
+        if (sharedDatePicker && !sharedDatePicker.classList.contains('hidden') && activeDateInput) {
+          renderDatePicker();
+          positionPopover(sharedDatePicker, activeDateInput);
+        }
+
+        if (sharedTimePicker && !sharedTimePicker.classList.contains('hidden') && activeTimeInput) {
+          positionPopover(sharedTimePicker, activeTimeInput);
         }
       });
     }, { passive: true });
@@ -1858,16 +1868,6 @@
       }
       if (sharedTimePicker && !sharedTimePicker.classList.contains('hidden') && activeTimeInput && target !== activeTimeInput && !sharedTimePicker.contains(target)) {
         hideTimePicker();
-      }
-    });
-
-    window.addEventListener('resize', () => {
-      if (sharedDatePicker && !sharedDatePicker.classList.contains('hidden') && activeDateInput) {
-        renderDatePicker();
-        positionPopover(sharedDatePicker, activeDateInput);
-      }
-      if (sharedTimePicker && !sharedTimePicker.classList.contains('hidden') && activeTimeInput) {
-        positionPopover(sharedTimePicker, activeTimeInput);
       }
     });
 
