@@ -546,12 +546,14 @@
 }
 
 
-/* Brand identity refinement: navy-led actions, orange as accent */
+/* Brand identity refinement: navy + warm gold */
 :root {
   --st-brand-navy: #0F172A;
-  --st-brand-navy-hover: #111C33;
+  --st-brand-navy-hover: #162033;
   --st-brand-navy-active: #0B1220;
-  --st-brand-orange: #F97316;
+  --st-brand-gold: #D9A441;
+  --st-brand-gold-hover: #C58F32;
+  --st-brand-gold-soft: #F6EBDD;
 }
 
 .st-service-tab.is-active,
@@ -563,7 +565,7 @@
 
 .st-service-tab.is-active svg,
 .st-service-tab[aria-selected="true"] svg {
-  color: #fff;
+  color: var(--st-brand-gold);
 }
 
 .st-booking-shell button[type="submit"],
@@ -593,9 +595,15 @@
 .st-booking-shell select:focus,
 .st-booking-shell button:focus-visible,
 .st-service-tab:focus-visible {
-  outline-color: var(--st-brand-orange);
+  outline-color: var(--st-brand-gold);
+  box-shadow: 0 0 0 3px rgba(217, 164, 65, .16);
 }
 
 .st-booking-shell input[type="radio"]:checked {
-  accent-color: var(--st-brand-orange);
+  accent-color: var(--st-brand-gold);
+}
+
+.st-service-tab:hover:not(.is-active):not([aria-selected="true"]) {
+  background: var(--st-brand-gold-soft);
+  color: var(--st-brand-navy);
 }
