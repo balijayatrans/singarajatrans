@@ -860,3 +860,14 @@ body.header-has-scrolled #mainNav {
     min-height: 60px;
   }
 }
+
+
+/* Top utility language flags */
+.topbar-lang-flag {
+  width: 16px;
+  height: 16px;
+  display: block;
+  flex: 0 0 16px;
+  border-radius: 50%;
+  overflow: hidden;
+}
