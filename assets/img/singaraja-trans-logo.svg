@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 180" role="img" aria-labelledby="title desc">
+<title id="title">SINGARAJA TRANS</title><desc id="desc">Logo SINGARAJA TRANS dengan simbol S navy dan aksen emas.</desc>
+<g transform="translate(10 10)">
+  <rect width="160" height="160" rx="36" fill="#0F172A"/>
+  <path d="M116 43c-12-10-26-15-42-15-26 0-45 13-45 32 0 17 13 26 38 31 24 5 31 9 31 18 0 8-9 14-23 14-18 0-33-6-47-18l-18 22c17 15 39 23 64 23 31 0 51-15 51-37 0-18-12-28-40-34-22-5-28-8-28-16 0-7 7-12 19-12 14 0 27 4 38 13l22-21z" fill="#F59E0B"/>
+  <path d="M48 128c18 11 42 14 66 4" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" opacity=".95"/>
+</g>
+<g transform="translate(205 48)">
+  <text x="0" y="42" font-family="Plus Jakarta Sans,Arial,sans-serif" font-size="44" font-weight="800" letter-spacing="1.5" fill="#0F172A">SINGARAJA</text>
+  <text x="2" y="88" font-family="Plus Jakarta Sans,Arial,sans-serif" font-size="31" font-weight="700" letter-spacing="8" fill="#D9A441">TRANS</text>
+</g>
+</svg>
