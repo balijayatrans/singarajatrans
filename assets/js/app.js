@@ -1,29 +1,4 @@
-    function syncBrandLogoFallback() {
-      document.querySelectorAll('.brand-logo-official').forEach(logo => {
-        const fallback = logo.nextElementSibling;
-        const showFallback = () => {
-          logo.style.display = 'none';
-          fallback?.classList.remove('hidden');
-          fallback?.classList.add('inline-flex');
-        };
-
-        const showLogo = () => {
-          logo.style.display = '';
-          fallback?.classList.add('hidden');
-          fallback?.classList.remove('inline-flex');
-        };
-        logo.addEventListener('load', showLogo);
-        logo.addEventListener('error', showFallback);
-        if (logo.complete) {
-          if (logo.naturalWidth > 0) showLogo();
-          else showFallback();
-        }
-      });
-    }
-
-    syncBrandLogoFallback();
-
-    const menuButton = document.getElementById('menuButton');
+const menuButton = document.getElementById('menuButton');
     const mobileMenu = document.getElementById('mobileMenu');
     const mobileLanguageSelector = document.getElementById('mobileLanguageSelector');
     const mobileLanguageButton = document.getElementById('mobileLanguageButton');
