@@ -31,6 +31,7 @@
   </script>
 <link href="assets/css/style.css" rel="stylesheet"/>
 <link href="assets/css/home-top.css" rel="stylesheet"/>
+<link href="assets/css/route-tickets.css" rel="stylesheet"/>
 <link href="assets/css/mobile.css" rel="stylesheet"/>
 </head>
 <body class="text-slate-800 antialiased" id="top">
@@ -479,94 +480,121 @@
 </div>
 </section>
 <!-- ROUTES -->
-<section class="bg-white py-14 border-y border-slate-200" id="rute" aria-labelledby="rute-heading">
+<section class="st-route-tickets-section" id="rute" aria-labelledby="rute-heading">
 <div class="container mx-auto px-4 max-w-7xl">
-<div class="flex flex-col md:flex-row md:justify-between md:items-end gap-4 mb-8">
+<div class="st-route-tickets-head">
 <div>
-<span class="font-bold tracking-[.18em] uppercase text-singaraja-orange">Rute Populer</span>
-<h2 class="type-section-title font-extrabold text-slate-900 mt-2" id="rute-heading">Perjalanan yang sering dipilih</h2>
-<p class="text-slate-500 mt-2">Pilih rute yang sesuai, lalu lanjutkan ke pencarian jadwal.</p>
+<div class="st-route-eyebrow"><i class="fa-solid fa-ticket"></i><span>Rute Populer</span></div>
+<h2 id="rute-heading">Rute Populer &amp; Tarif Tiket Terbaik</h2>
+<p>Pilih rute perjalanan yang sesuai, lalu lanjutkan ke pencarian jadwal SINGARAJA TRANS.</p>
 </div>
-<a class="hidden md:inline-flex items-center gap-2 text-singaraja-orange font-semibold hover:text-singaraja-darkOrange" href="#booking">
-          Lihat semua rute <i class="fas fa-arrow-right text-xs"></i>
-</a>
+<div class="st-route-slider-actions">
+<span>Geser untuk melihat rute</span>
+<button type="button" class="st-route-nav" id="routePrev" aria-label="Rute sebelumnya"><i class="fa-solid fa-chevron-left"></i></button>
+<button type="button" class="st-route-nav" id="routeNext" aria-label="Rute berikutnya"><i class="fa-solid fa-chevron-right"></i></button>
 </div>
-<div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
-<article aria-labelledby="route-singaraja-denpasar" class="group overflow-hidden rounded-2xl border border-slate-200 bg-white transition hover:border-slate-300 hover:shadow-lg">
-<div class="relative h-24 sm:h-32 lg:h-36 overflow-hidden bg-slate-100">
-<img alt="Pantai Lovina, Buleleng" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]" loading="lazy" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7a/Beach_at_Lovina%2C_Bali.jpg/960px-Beach_at_Lovina%2C_Bali.jpg"/>
-<span class="absolute left-3 top-3 rounded-full bg-white px-2.5 py-1 text-[9px] sm:text-[10px] font-bold tracking-wide text-singaraja-orange shadow-sm">POPULER</span>
 </div>
-<div class="p-3.5 sm:p-5">
-<h3 class="type-card-title font-bold leading-snug text-slate-900" id="route-singaraja-denpasar">Singaraja ↔ Denpasar</h3>
-<div class="mt-3 flex items-end justify-between gap-2">
-<div>
-<div class="text-[10px] sm:text-xs text-slate-400">Mulai</div>
-<div class="font-extrabold text-sm sm:text-base text-singaraja-orange">Rp120.000</div>
+
+<div class="st-route-ticket-track" id="routeTicketTrack">
+<article class="st-route-ticket highlighted-card" aria-labelledby="ticket-singaraja-denpasar">
+<div class="st-route-ticket-top">
+<div class="st-route-endpoint">
+<span>ASAL</span>
+<h3 id="ticket-singaraja-denpasar">Singaraja</h3>
+<small>Lovina / Buleleng</small>
 </div>
-<a aria-label="Cari jadwal Singaraja ke Denpasar" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-slate-200 text-slate-700 transition hover:border-singaraja-orange hover:bg-orange-50 hover:text-singaraja-orange" href="#booking">
-<i class="fas fa-arrow-right text-xs"></i>
-</a>
+<div class="st-route-path">
+<span>TRAVEL REGULER</span>
+<div><i class="st-route-dot"></i><b></b><i class="fa-solid fa-chevron-right"></i></div>
+<small>Via Bedugul</small>
 </div>
+<div class="st-route-endpoint is-destination">
+<span>TUJUAN</span>
+<h3>Denpasar</h3>
+<small>Area kota &amp; sekitarnya</small>
+</div>
+</div>
+<div class="st-ticket-divider"><i class="st-ticket-cutout left"></i><i class="st-ticket-cutout right"></i></div>
+<div class="st-route-ticket-bottom">
+<div><span>Tarif tiket reguler</span><strong>Rp120.000 <small>/orang</small></strong></div>
+<a href="#booking" class="st-route-book-button" aria-label="Pesan Singaraja ke Denpasar">PESAN <i class="fa-solid fa-arrow-right"></i></a>
 </div>
 </article>
-<article aria-labelledby="route-singaraja-gilimanuk" class="group overflow-hidden rounded-2xl border border-slate-200 bg-white transition hover:border-slate-300 hover:shadow-lg">
-<div class="relative h-24 sm:h-32 lg:h-36 overflow-hidden bg-slate-100">
-<img alt="Pelabuhan Gilimanuk, Bali" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]" loading="lazy" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8a/Gilimanuk_Bali_Indonesia_Gilimanuk-Harbour-Ferry-terminal-01.jpg/960px-Gilimanuk_Bali_Indonesia_Gilimanuk-Harbour-Ferry-terminal-01.jpg"/>
-<span class="absolute left-3 top-3 rounded-full bg-white px-2.5 py-1 text-[9px] sm:text-[10px] font-bold tracking-wide text-slate-700 shadow-sm">REGULER</span>
+
+<article class="st-route-ticket" aria-labelledby="ticket-singaraja-gilimanuk">
+<div class="st-route-ticket-top">
+<div class="st-route-endpoint">
+<span>ASAL</span>
+<h3 id="ticket-singaraja-gilimanuk">Singaraja</h3>
+<small>Kota / Seririt</small>
 </div>
-<div class="p-3.5 sm:p-5">
-<h3 class="type-card-title font-bold leading-snug text-slate-900" id="route-singaraja-gilimanuk">Singaraja ↔ Gilimanuk</h3>
-<div class="mt-3 flex items-end justify-between gap-2">
-<div>
-<div class="text-[10px] sm:text-xs text-slate-400">Mulai</div>
-<div class="font-extrabold text-sm sm:text-base text-singaraja-orange">Rp100.000</div>
+<div class="st-route-path">
+<span>TRAVEL REGULER</span>
+<div><i class="st-route-dot"></i><b></b><i class="fa-solid fa-chevron-right"></i></div>
+<small>Jalur Pesisir</small>
 </div>
-<a aria-label="Cari jadwal Singaraja ke Gilimanuk" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-slate-200 text-slate-700 transition hover:border-singaraja-orange hover:bg-orange-50 hover:text-singaraja-orange" href="#booking">
-<i class="fas fa-arrow-right text-xs"></i>
-</a>
+<div class="st-route-endpoint is-destination">
+<span>TUJUAN</span>
+<h3>Gilimanuk</h3>
+<small>Pelabuhan &amp; sekitarnya</small>
 </div>
 </div>
-</article>
-<article aria-labelledby="route-singaraja-kuta-bandara" class="group overflow-hidden rounded-2xl border border-slate-200 bg-white transition hover:border-slate-300 hover:shadow-lg">
-<div class="relative h-24 sm:h-32 lg:h-36 overflow-hidden bg-slate-100">
-<img alt="Kuta, Bali" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]" loading="lazy" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/56/Kuta_Beach_Bali_Indonesia.jpg/960px-Kuta_Beach_Bali_Indonesia.jpg"/>
-<span class="absolute left-3 top-3 rounded-full bg-white px-2.5 py-1 text-[9px] sm:text-[10px] font-bold tracking-wide text-slate-700 shadow-sm">TRAVEL</span>
-</div>
-<div class="p-3.5 sm:p-5">
-<h3 class="type-card-title font-bold leading-snug text-slate-900" id="route-singaraja-kuta-bandara">Singaraja ↔ Kuta / Bandara</h3>
-<div class="mt-3 flex items-end justify-between gap-2">
-<div>
-<div class="text-[10px] sm:text-xs text-slate-400">Tarif</div>
-<div class="font-extrabold text-sm sm:text-base text-singaraja-orange">Cek jadwal</div>
-</div>
-<a aria-label="Cari jadwal Singaraja ke Kuta atau Bandara" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-slate-200 text-slate-700 transition hover:border-singaraja-orange hover:bg-orange-50 hover:text-singaraja-orange" href="#booking">
-<i class="fas fa-arrow-right text-xs"></i>
-</a>
-</div>
+<div class="st-ticket-divider"><i class="st-ticket-cutout left"></i><i class="st-ticket-cutout right"></i></div>
+<div class="st-route-ticket-bottom">
+<div><span>Tarif tiket reguler</span><strong>Rp100.000 <small>/orang</small></strong></div>
+<a href="#booking" class="st-route-book-button" aria-label="Pesan Singaraja ke Gilimanuk">PESAN <i class="fa-solid fa-arrow-right"></i></a>
 </div>
 </article>
-<article aria-labelledby="route-airport-singaraja-lovina" class="group overflow-hidden rounded-2xl border border-slate-200 bg-white transition hover:border-slate-300 hover:shadow-lg">
-<div class="relative h-24 sm:h-32 lg:h-36 overflow-hidden bg-slate-100">
-<img alt="Bandara I Gusti Ngurah Rai, Bali" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]" loading="lazy" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8b/Bandara_I_Gusti_Ngurahrai_Bali.jpg/960px-Bandara_I_Gusti_Ngurahrai_Bali.jpg"/>
-<span class="absolute left-3 top-3 rounded-full bg-white px-2.5 py-1 text-[9px] sm:text-[10px] font-bold tracking-wide text-orange-700 shadow-sm">AIRPORT</span>
+
+<article class="st-route-ticket" aria-labelledby="ticket-singaraja-bandara">
+<div class="st-route-ticket-top">
+<div class="st-route-endpoint">
+<span>ASAL</span>
+<h3 id="ticket-singaraja-bandara">Singaraja</h3>
+<small>Door-to-door</small>
 </div>
-<div class="p-3.5 sm:p-5">
-<h3 class="type-card-title font-bold leading-snug text-slate-900" id="route-airport-singaraja-lovina">Airport ↔ Singaraja / Lovina</h3>
-<div class="mt-3 flex items-end justify-between gap-2">
-<div>
-<div class="text-[10px] sm:text-xs text-slate-400">MPV mulai</div>
-<div class="font-extrabold text-sm sm:text-base text-singaraja-orange">Rp650.000</div>
+<div class="st-route-path">
+<span>TRAVEL</span>
+<div><i class="st-route-dot"></i><b></b><i class="fa-solid fa-plane"></i></div>
+<small>Bandara / Kuta</small>
 </div>
-<a aria-label="Lihat airport transfer" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-slate-200 text-slate-700 transition hover:border-singaraja-orange hover:bg-orange-50 hover:text-singaraja-orange" href="#booking">
-<i class="fas fa-arrow-right text-xs"></i>
-</a>
+<div class="st-route-endpoint is-destination">
+<span>TUJUAN</span>
+<h3>Bandara / Kuta</h3>
+<small>Ngurah Rai &amp; area Kuta</small>
 </div>
+</div>
+<div class="st-ticket-divider"><i class="st-ticket-cutout left"></i><i class="st-ticket-cutout right"></i></div>
+<div class="st-route-ticket-bottom">
+<div><span>Tarif perjalanan</span><strong class="is-text">Cek jadwal</strong></div>
+<a href="#booking" class="st-route-book-button" aria-label="Cek jadwal Singaraja ke Bandara atau Kuta">CEK <i class="fa-solid fa-arrow-right"></i></a>
 </div>
 </article>
+
+<article class="st-route-ticket" aria-labelledby="ticket-airport-lovina">
+<div class="st-route-ticket-top">
+<div class="st-route-endpoint">
+<span>ASAL</span>
+<h3 id="ticket-airport-lovina">Bandara DPS</h3>
+<small>Ngurah Rai</small>
 </div>
-<div class="mt-6 md:hidden">
-<a class="block text-center px-6 py-3 border border-singaraja-orange text-singaraja-orange rounded-xl font-semibold" href="#booking">Lihat Semua Rute</a>
+<div class="st-route-path">
+<span>AIRPORT TRANSFER</span>
+<div><i class="st-route-dot"></i><b></b><i class="fa-solid fa-plane-arrival"></i></div>
+<small>Private transfer</small>
+</div>
+<div class="st-route-endpoint is-destination">
+<span>TUJUAN</span>
+<h3>Singaraja / Lovina</h3>
+<small>Buleleng &amp; sekitarnya</small>
+</div>
+</div>
+<div class="st-ticket-divider"><i class="st-ticket-cutout left"></i><i class="st-ticket-cutout right"></i></div>
+<div class="st-route-ticket-bottom">
+<div><span>MPV mulai dari</span><strong>Rp650.000 <small>/mobil</small></strong></div>
+<a href="#booking" class="st-route-book-button" aria-label="Pesan airport transfer ke Singaraja atau Lovina">PESAN <i class="fa-solid fa-arrow-right"></i></a>
+</div>
+</article>
 </div>
 </div>
 </section>

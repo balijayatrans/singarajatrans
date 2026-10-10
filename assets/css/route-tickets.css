@@ -1,0 +1,374 @@
+/* SINGARAJA TRANS popular-route replacement
+   Ticket-card layout based on the approved route reference. */
+
+.st-route-tickets-section {
+  padding: 58px 0 52px;
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.st-route-tickets-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.st-route-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  color: #F97316;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+.st-route-tickets-head h2 {
+  margin: 0;
+  color: #0f172a;
+  font-size: clamp(25px, 2.5vw, 36px);
+  line-height: 1.12;
+  letter-spacing: -.03em;
+  font-weight: 800;
+}
+
+.st-route-tickets-head p {
+  margin: 8px 0 0;
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.st-route-slider-actions {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex: 0 0 auto;
+}
+
+.st-route-slider-actions > span {
+  margin-right: 3px;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.st-route-nav {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #dbe3ee;
+  border-radius: 999px;
+  background: #fff;
+  color: #94a3b8;
+  box-shadow: 0 3px 10px rgba(15,23,42,.04);
+  transition: border-color .18s ease, color .18s ease, box-shadow .18s ease;
+}
+
+.st-route-nav:hover {
+  color: #0f172a;
+  border-color: #cbd5e1;
+  box-shadow: 0 5px 14px rgba(15,23,42,.07);
+}
+
+.st-route-ticket-track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 8px 3px 14px;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.st-route-ticket-track::-webkit-scrollbar { display: none; }
+
+.st-route-ticket {
+  position: relative;
+  flex: 0 0 340px;
+  min-width: 340px;
+  overflow: hidden;
+  scroll-snap-align: start;
+  border: 1px solid #e2e8f0;
+  border-radius: 17px;
+  background: #fff;
+  box-shadow: 0 5px 16px rgba(15,23,42,.045);
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+
+.st-route-ticket:hover {
+  transform: translateY(-2px);
+  border-color: #fed7aa;
+  box-shadow: 0 10px 25px rgba(15,23,42,.075);
+}
+
+.st-route-ticket.highlighted-card {
+  border-color: #F97316;
+  box-shadow: 0 9px 26px rgba(249,115,22,.14);
+}
+
+.st-route-ticket-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(105px, .9fr) minmax(0, 1.08fr);
+  align-items: start;
+  gap: 8px;
+  padding: 22px 20px 11px;
+}
+
+.st-route-endpoint {
+  min-width: 0;
+}
+
+.st-route-endpoint > span {
+  display: block;
+  margin-bottom: 4px;
+  color: #94a3b8;
+  font-size: 9px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: .04em;
+}
+
+.st-route-endpoint h3 {
+  margin: 0;
+  color: #0f172a;
+  font-size: 16px;
+  line-height: 1.15;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.st-route-endpoint small {
+  display: block;
+  margin-top: 5px;
+  color: #64748b;
+  font-size: 10px;
+  line-height: 1.3;
+}
+
+.st-route-endpoint.is-destination {
+  text-align: right;
+}
+
+.st-route-path {
+  padding-top: 2px;
+  text-align: center;
+}
+
+.st-route-path > span {
+  display: block;
+  margin-bottom: 6px;
+  color: #64748b;
+  font-size: 8.5px;
+  line-height: 1;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.st-route-path > div {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.st-route-path .st-route-dot {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 7px;
+  border-radius: 999px;
+  background: #F97316;
+}
+
+.st-route-path b {
+  height: 0;
+  flex: 1;
+  margin: 0 4px;
+  border-top: 2px dashed #cbd5e1;
+}
+
+.st-route-path i {
+  color: #F97316;
+  font-size: 10px;
+}
+
+.st-route-path small {
+  display: block;
+  margin-top: 6px;
+  color: #F97316;
+  font-size: 8.5px;
+  line-height: 1.15;
+  font-weight: 700;
+}
+
+.st-ticket-divider {
+  position: relative;
+  height: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.st-ticket-divider::before {
+  content: "";
+  width: 100%;
+  border-top: 2px dashed #e2e8f0;
+}
+
+.st-ticket-cutout {
+  position: absolute;
+  top: 50%;
+  width: 11px;
+  height: 22px;
+  z-index: 2;
+  transform: translateY(-50%);
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.st-ticket-cutout.left {
+  left: -1px;
+  border-left: 0;
+  border-radius: 0 999px 999px 0;
+}
+
+.st-ticket-cutout.right {
+  right: -1px;
+  border-right: 0;
+  border-radius: 999px 0 0 999px;
+}
+
+.highlighted-card .st-ticket-cutout {
+  border-color: #F97316;
+}
+
+.highlighted-card .st-ticket-divider::before {
+  border-color: #fed7aa;
+}
+
+.st-route-ticket-bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 20px 21px;
+}
+
+.st-route-ticket-bottom > div > span {
+  display: block;
+  margin-bottom: 3px;
+  color: #64748b;
+  font-size: 10px;
+  line-height: 1.2;
+}
+
+.st-route-ticket-bottom strong {
+  display: block;
+  color: #F97316;
+  font-size: 20px;
+  line-height: 1.1;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.st-route-ticket-bottom strong small {
+  color: #94a3b8;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.st-route-ticket-bottom strong.is-text {
+  font-size: 17px;
+}
+
+.st-route-book-button {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex: 0 0 auto;
+  padding: 0 14px;
+  border-radius: 10px;
+  background: #F97316;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  box-shadow: 0 6px 14px rgba(249,115,22,.20);
+  transition: background .18s ease, transform .18s ease;
+}
+
+.st-route-book-button:hover {
+  background: #EA580C;
+  transform: translateY(-1px);
+}
+
+.st-route-book-button i {
+  font-size: 9px;
+}
+
+@media (min-width: 1200px) {
+  .st-route-ticket {
+    flex-basis: 365px;
+    min-width: 365px;
+  }
+}
+
+@media (max-width: 767px) {
+  .st-route-tickets-section {
+    padding: 40px 0 36px;
+  }
+
+  .st-route-tickets-head {
+    display: block;
+    margin-bottom: 18px;
+  }
+
+  .st-route-tickets-head h2 {
+    font-size: 25px;
+  }
+
+  .st-route-tickets-head p {
+    font-size: 13px;
+  }
+
+  .st-route-slider-actions {
+    margin-top: 14px;
+    justify-content: flex-end;
+  }
+
+  .st-route-slider-actions > span {
+    margin-right: auto;
+    font-size: 11px;
+  }
+
+  .st-route-nav {
+    width: 36px;
+    height: 36px;
+  }
+
+  .st-route-ticket-track {
+    gap: 13px;
+    margin-right: -16px;
+    padding-right: 16px;
+  }
+
+  .st-route-ticket {
+    flex-basis: min(88vw, 340px);
+    min-width: min(88vw, 340px);
+  }
+
+  .st-route-ticket-top {
+    padding: 20px 17px 10px;
+    grid-template-columns: minmax(0, 1fr) 96px minmax(0, 1.05fr);
+  }
+
+  .st-route-ticket-bottom {
+    padding: 0 17px 19px;
+  }
+}

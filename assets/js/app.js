@@ -47,6 +47,22 @@
       closeMobileMenu();
     });
 
+
+    const routeTicketTrack = document.getElementById('routeTicketTrack');
+    const routePrev = document.getElementById('routePrev');
+    const routeNext = document.getElementById('routeNext');
+
+    function scrollRouteTickets(direction) {
+      if (!routeTicketTrack) return;
+      const firstCard = routeTicketTrack.querySelector('.st-route-ticket');
+      const gap = 20;
+      const distance = (firstCard?.getBoundingClientRect().width || 340) + gap;
+      routeTicketTrack.scrollBy({ left: direction * distance, behavior: 'smooth' });
+    }
+
+    routePrev?.addEventListener('click', () => scrollRouteTickets(-1));
+    routeNext?.addEventListener('click', () => scrollRouteTickets(1));
+
     const utilityTopBar = document.getElementById('utilityTopBar');
     const mainNav = document.getElementById('mainNav');
     const mainNavSpacer = document.getElementById('mainNavSpacer');
