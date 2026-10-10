@@ -30,7 +30,7 @@
     }
   </script>
 <link href="assets/css/style.css" rel="stylesheet"/>
-<link href="assets/css/hero-overlay.css" rel="stylesheet"/>
+<link href="assets/css/home-top.css" rel="stylesheet"/>
 <link href="assets/css/mobile.css" rel="stylesheet"/>
 </head>
 <body class="text-slate-800 antialiased" id="top">
@@ -137,50 +137,40 @@
 -->
 <main id="main-content" aria-labelledby="page-title">
 <!-- HERO -->
-<header class="hero-pattern premium-hero relative w-full flex items-center">
-<div class="container mx-auto px-4 max-w-7xl premium-hero-inner">
-<div class="premium-hero-copy text-white">
-<h1 class="premium-hero-title type-display font-extrabold tracking-[-0.035em] leading-[1.08]" id="page-title">
-          Perjalanan <span class="premium-hero-accent">Nyaman</span> ke Berbagai Tujuan di Bali
-</h1>
-<div class="premium-hero-rule" aria-hidden="true"></div>
-<p class="premium-hero-subtitle">
-          Shuttle travel, airport transfer, dan charter bersama <strong>SINGARAJA TRANS.</strong>
-        </p>
-<div class="premium-hero-trust" aria-label="Keunggulan layanan Singaraja Trans">
-<div class="premium-trust-item">
-<span class="premium-trust-icon"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></span>
-<span>Aman &amp;<br/>Terpercaya</span>
-</div>
-<div class="premium-trust-item">
-<span class="premium-trust-icon"><i class="fa-solid fa-user-group" aria-hidden="true"></i></span>
-<span>Layanan<br/>Profesional</span>
-</div>
-<div class="premium-trust-item">
-<span class="premium-trust-icon"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></span>
-<span>Jangkauan<br/>Luas di Bali</span>
-</div>
+<header class="hero-pattern st-top-hero">
+<div class="st-top-hero-overlay" aria-hidden="true"></div>
+<div class="container mx-auto px-4 max-w-7xl st-top-hero-inner">
+<div class="st-top-hero-copy">
+<div class="st-top-kicker">TRAVEL <span>•</span> EXPLORE <span>•</span> DISCOVER</div>
+<h1 class="st-top-title" id="page-title">Perjalanan <span>Nyaman</span><br/>ke Berbagai Tujuan di Bali</h1>
+<p class="st-top-subtitle">Shuttle travel, airport transfer, dan charter bersama <strong>SINGARAJA TRANS.</strong></p>
+<div class="st-top-trust" aria-label="Keunggulan layanan SINGARAJA TRANS">
+<div class="st-top-trust-item"><span class="st-top-trust-icon"><i class="fas fa-shield-halved"></i></span><span><strong>Aman &amp; Terpercaya</strong><small>Standar layanan profesional</small></span></div>
+<div class="st-top-trust-item"><span class="st-top-trust-icon"><i class="fas fa-user-group"></i></span><span><strong>Layanan Profesional</strong><small>Tim siap membantu perjalanan</small></span></div>
+<div class="st-top-trust-item"><span class="st-top-trust-icon"><i class="fas fa-location-dot"></i></span><span><strong>Jangkauan Luas di Bali</strong><small>Rute utama &amp; private trip</small></span></div>
 </div>
 </div>
 </div>
 </header>
-<!-- BOOKING CARD -->
-<section class="container mx-auto px-4 max-w-6xl -mt-24 md:-mt-24 lg:-mt-24 relative z-10 mb-8" id="booking" aria-labelledby="booking-heading">
-<h2 class="sr-only" id="booking-heading">Cari jadwal perjalanan SINGARAJA TRANS</h2>
-<div class="booking-widget relative" id="bookingWidget">
+
+<!-- BOOKING WIDGET -->
+<section class="st-booking-section" id="booking" aria-labelledby="booking-heading">
+<h2 class="sr-only" id="booking-heading">Cari perjalanan SINGARAJA TRANS</h2>
+<div class="container mx-auto px-4 max-w-7xl">
+<div class="booking-widget st-booking-shell" id="bookingWidget">
 <div class="booking-tabs-shell" role="tablist" aria-label="Pilih layanan">
-<button type="button" class="tab-button active" data-tab="travel" role="tab" aria-controls="tab-travel">
-<i aria-hidden="true" class="fa-solid fa-bus tab-icon"></i>
-<span>Travel Shuttle</span>
+<button type="button" class="tab-button active" id="tab-btn-travel" data-tab="travel" role="tab" aria-controls="tab-travel" aria-selected="true">
+<i aria-hidden="true" class="fa-solid fa-bus tab-icon"></i><span>Travel Reguler</span>
 </button>
-<button type="button" class="tab-button inactive" data-tab="airport" role="tab" aria-controls="tab-airport">
-<i aria-hidden="true" class="fa-solid fa-plane-departure tab-icon"></i>
-<span>Airport Transfer</span>
+<button type="button" class="tab-button inactive" id="tab-btn-airport" data-tab="airport" role="tab" aria-controls="tab-airport" aria-selected="false">
+<i aria-hidden="true" class="fa-solid fa-plane-departure tab-icon"></i><span>Airport Transfer</span>
+</button>
+<button type="button" class="tab-button inactive" id="tab-btn-charter" data-tab="charter" role="tab" aria-controls="tab-charter" aria-selected="false">
+<i aria-hidden="true" class="fa-solid fa-car-side tab-icon"></i><span>Charter &amp; Private Trip</span>
 </button>
 </div>
-<div class="booking-card-body bg-white shadow-[0_10px_24px_rgba(15,23,42,0.05),0_22px_48px_rgba(15,23,42,0.04)] border border-slate-200/60 border-t-0 overflow-visible">
-<div class="p-5 md:p-6 lg:p-6">
-<div class="tab-panel active" id="tab-travel" role="tabpanel">
+<div class="booking-card-body st-booking-body">
+<div class="tab-panel active" id="tab-travel" role="tabpanel" aria-labelledby="tab-btn-travel">
 <div class="travel-mode-row mb-4">
 <div aria-label="Jenis perjalanan" class="flex flex-wrap items-center gap-5 md:gap-6" role="radiogroup">
 <label class="trip-mode-label inline-flex cursor-pointer items-center gap-2 rounded-none px-0 py-1 text-[13px] md:text-[14px] font-semibold text-singaraja-orange transition">
@@ -301,7 +291,8 @@
             </button>
 </form>
 </div>
-<div class="tab-panel" id="tab-airport" role="tabpanel">
+
+<div class="tab-panel" id="tab-airport" role="tabpanel" aria-labelledby="tab-btn-airport">
 <div class="airport-direction-row mb-4">
 <div aria-label="Arah airport transfer" class="flex flex-wrap items-center gap-5 md:gap-6" role="radiogroup">
 <label class="airport-direction-label inline-flex cursor-pointer items-center gap-2 rounded-none px-0 py-1 text-[13px] md:text-[14px] font-semibold text-singaraja-orange transition" data-direction="from-airport">
@@ -383,42 +374,108 @@
             </button>
 </form>
 </div>
+
+<div class="tab-panel" id="tab-charter" role="tabpanel" aria-labelledby="tab-btn-charter">
+<form class="charter-grid-layout grid grid-cols-1 md:grid-cols-2 gap-3 items-end" id="charterForm" novalidate="" onsubmit="event.preventDefault();">
+<div class="charter-origin-field">
+<label class="block text-xs md:text-[11px] font-semibold text-slate-700 mb-1.5">Asal<span class="required-mark">*</span></label>
+<div class="custom-combobox" data-combobox="" data-has-location="true" data-location-label="Asal" data-location-breakpoint="" data-required="true" id="charterOriginBox">
+<button class="combo-trigger relative w-full min-w-0 pl-10 pr-10 py-3 border border-slate-300 rounded-xl bg-white text-sm text-left transition" type="button">
+<i class="fas fa-location-dot absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+<span class="combo-value block truncate whitespace-nowrap text-slate-500">Pilih lokasi asal</span>
+<i class="fas fa-chevron-down absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+</button>
+<div class="combo-dropdown hidden">
+<div class="px-3 py-3 border-b border-slate-200 bg-white">
+<div class="flex items-center gap-2 rounded-xl border border-slate-200 px-3 py-2.5 bg-slate-50">
+<i class="fas fa-search text-slate-400 text-xs"></i>
+<input class="combo-search bg-transparent" placeholder="Cari lokasi asal..." type="text"/>
+</div>
+<button class="combo-location mt-2 rounded-xl border border-orange-100" type="button"><i class="fas fa-location-crosshairs"></i> Gunakan lokasi saya</button>
+</div>
+<div class="combo-options combo-scroll max-h-56 overflow-y-auto py-2">
+<button class="combo-item" data-value="Singaraja / Lovina" type="button"><i class="fas fa-location-dot text-singaraja-orange"></i><span>Singaraja / Lovina</span></button>
+<button class="combo-item" data-value="Denpasar" type="button"><i class="fas fa-location-dot text-singaraja-orange"></i><span>Denpasar</span></button>
+<button class="combo-item" data-value="Bandara Ngurah Rai / Kuta" type="button"><i class="fas fa-location-dot text-singaraja-orange"></i><span>Bandara Ngurah Rai / Kuta</span></button>
+<button class="combo-item" data-value="Gianyar / Ubud / Bangli" type="button"><i class="fas fa-location-dot text-singaraja-orange"></i><span>Gianyar / Ubud / Bangli</span></button>
+<button class="combo-item" data-value="Karangasem / Padang Bai" type="button"><i class="fas fa-location-dot text-singaraja-orange"></i><span>Karangasem / Padang Bai</span></button>
+<button class="combo-item" data-value="Gilimanuk" type="button"><i class="fas fa-location-dot text-singaraja-orange"></i><span>Gilimanuk</span></button>
+<div class="combo-empty hidden">Pilihan tidak ditemukan.</div>
 </div>
 </div>
 </div>
-</section>
-<!-- QUICK BENEFITS -->
-<section class="container mx-auto px-4 max-w-7xl pt-6 pb-8" id="layanan" aria-labelledby="layanan-heading">
-<h2 class="sr-only" id="layanan-heading">Keunggulan layanan SINGARAJA TRANS</h2>
-<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-<a class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center text-center hover:shadow-lg hover:-translate-y-1 transition group" href="#rute">
-<div class="w-14 h-14 bg-orange-100 rounded-2xl flex items-center justify-center mb-3 group-hover:bg-singaraja-orange transition">
-<i class="fas fa-map-location-dot text-xl text-singaraja-orange group-hover:text-white transition"></i>
 </div>
-<h3 class="type-card-title font-semibold text-slate-900" id="benefit-antar-jemput">Antar Jemput</h3>
-<p class="text-slate-500 mt-1 leading-relaxed">Rute utama berbagai wilayah Bali</p>
-</a>
-<a class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center text-center hover:shadow-lg hover:-translate-y-1 transition group" href="#rute">
-<div class="w-14 h-14 bg-orange-100 rounded-2xl flex items-center justify-center mb-3 group-hover:bg-singaraja-orange transition">
-<i class="fas fa-clock text-xl text-singaraja-orange group-hover:text-white transition"></i>
+<div class="charter-destination-field">
+<label class="block text-xs md:text-[11px] font-semibold text-slate-700 mb-1.5">Tujuan<span class="required-mark">*</span></label>
+<div class="custom-combobox" data-combobox="" data-has-location="false" data-location-label="Tujuan" data-location-breakpoint="" data-required="true" id="charterDestinationBox">
+<button class="combo-trigger relative w-full min-w-0 pl-10 pr-10 py-3 border border-slate-300 rounded-xl bg-white text-sm text-left transition" type="button">
+<i class="fas fa-location-dot absolute left-3.5 top-1/2 -translate-y-1/2 text-singaraja-orange"></i>
+<span class="combo-value block truncate whitespace-nowrap text-slate-500">Pilih lokasi tujuan</span>
+<i class="fas fa-chevron-down absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+</button>
+<div class="combo-dropdown hidden">
+<div class="px-3 py-3 border-b border-slate-200 bg-white">
+<div class="flex items-center gap-2 rounded-xl border border-slate-200 px-3 py-2.5 bg-slate-50">
+<i class="fas fa-search text-slate-400 text-xs"></i>
+<input class="combo-search bg-transparent" placeholder="Cari lokasi tujuan..." type="text"/>
 </div>
-<h3 class="type-card-title font-semibold text-slate-900" id="benefit-jadwal-teratur">Jadwal Teratur</h3>
-<p class="text-slate-500 mt-1 leading-relaxed">Pilihan keberangkatan sesuai rute</p>
-</a>
-<a class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center text-center hover:shadow-lg hover:-translate-y-1 transition group" href="#armada">
-<div class="w-14 h-14 bg-orange-100 rounded-2xl flex items-center justify-center mb-3 group-hover:bg-singaraja-orange transition">
-<i class="fas fa-van-shuttle text-xl text-singaraja-orange group-hover:text-white transition"></i>
 </div>
-<h3 class="type-card-title font-semibold text-slate-900" id="benefit-armada-nyaman">Armada Nyaman</h3>
-<p class="text-slate-500 mt-1 leading-relaxed">Travel dan charter untuk kebutuhan Anda</p>
-</a>
-<a class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center text-center hover:shadow-lg hover:-translate-y-1 transition group" href="#booking">
-<div class="w-14 h-14 bg-orange-100 rounded-2xl flex items-center justify-center mb-3 group-hover:bg-singaraja-orange transition">
-<i class="fab fa-whatsapp text-xl text-singaraja-orange group-hover:text-white transition"></i>
+<div class="combo-options combo-scroll max-h-56 overflow-y-auto py-2">
+<button class="combo-item" data-value="Singaraja / Lovina" type="button"><i class="fas fa-location-dot text-singaraja-orange"></i><span>Singaraja / Lovina</span></button>
+<button class="combo-item" data-value="Denpasar" type="button"><i class="fas fa-location-dot text-singaraja-orange"></i><span>Denpasar</span></button>
+<button class="combo-item" data-value="Bandara Ngurah Rai / Kuta" type="button"><i class="fas fa-location-dot text-singaraja-orange"></i><span>Bandara Ngurah Rai / Kuta</span></button>
+<button class="combo-item" data-value="Gianyar / Ubud / Bangli" type="button"><i class="fas fa-location-dot text-singaraja-orange"></i><span>Gianyar / Ubud / Bangli</span></button>
+<button class="combo-item" data-value="Karangasem / Padang Bai" type="button"><i class="fas fa-location-dot text-singaraja-orange"></i><span>Karangasem / Padang Bai</span></button>
+<button class="combo-item" data-value="Gilimanuk" type="button"><i class="fas fa-location-dot text-singaraja-orange"></i><span>Gilimanuk</span></button>
+<div class="combo-empty hidden">Pilihan tidak ditemukan.</div>
 </div>
-<h3 class="type-card-title font-semibold text-slate-900" id="benefit-booking-mudah">Booking Mudah</h3>
-<p class="text-slate-500 mt-1 leading-relaxed">Pesan online atau melalui WhatsApp</p>
-</a>
+</div>
+</div>
+</div>
+<div class="charter-date-field min-w-0">
+<label class="block text-xs md:text-[11px] font-semibold text-slate-700 mb-1.5">Tanggal Jemput<span class="required-mark">*</span></label>
+<div class="relative">
+<i class="far fa-calendar-alt absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"></i>
+<input class="booking-field w-full pl-10 pr-3 py-3 border border-slate-300 rounded-xl bg-white text-sm text-slate-700 cursor-pointer" data-placeholder-en="Oct 06, 2026" data-placeholder-id="06 Okt, 2026" data-required="true" id="charterPickupDate" placeholder="06 Okt, 2026" readonly="" type="text"/>
+</div>
+</div>
+<div class="charter-time-field min-w-0">
+<label class="block text-xs md:text-[11px] font-semibold text-slate-700 mb-1.5">Waktu<span class="required-mark">*</span></label>
+<div class="relative">
+<i class="far fa-clock absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"></i>
+<input class="booking-field w-full pl-10 pr-3 py-3 border border-slate-300 rounded-xl bg-white text-sm text-slate-700 cursor-pointer" data-required="true" id="charterPickupTime" placeholder="09:35" readonly="" type="text"/>
+</div>
+</div>
+<div class="charter-passenger-field">
+<label class="block text-xs md:text-[11px] font-semibold text-slate-700 mb-1.5">Penumpang</label>
+<div class="relative">
+<i class="fas fa-user-group absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"></i>
+<select class="booking-field w-full pl-10 pr-8 py-3 border border-slate-300 rounded-xl bg-white text-sm text-slate-700 appearance-none" id="charterPassenger">
+<option value="1">1 Orang</option>
+<option value="2">2 Orang</option>
+<option value="3">3 Orang</option>
+<option value="4">4 Orang</option>
+<option value="5">5 Orang</option>
+<option value="6+">6+ Orang</option>
+</select>
+<i class="fas fa-chevron-down absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+</div>
+</div>
+<button class="charter-search-button w-full bg-singaraja-orange hover:bg-singaraja-darkOrange text-white font-bold text-sm py-3 px-4 rounded-xl shadow-md transition flex items-center justify-center gap-2 min-h-[46px]" id="charterSearchButton" type="submit">
+<i class="fas fa-search"></i> Cari Mobil
+</button>
+</form>
+</div>
+</div>
+</div>
+
+<div class="st-quick-routes" aria-label="Rute cepat">
+<a class="st-quick-route-card" href="#booking"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7a/Beach_at_Lovina%2C_Bali.jpg/320px-Beach_at_Lovina%2C_Bali.jpg" alt="" loading="lazy"/><span><strong>Singaraja → Denpasar</strong><b>Rp120.000</b></span><i class="fas fa-arrow-right"></i></a>
+<a class="st-quick-route-card" href="#booking"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8a/Gilimanuk_Bali_Indonesia_Gilimanuk-Harbour-Ferry-terminal-01.jpg/320px-Gilimanuk_Bali_Indonesia_Gilimanuk-Harbour-Ferry-terminal-01.jpg" alt="" loading="lazy"/><span><strong>Singaraja → Gilimanuk</strong><b>Rp100.000</b></span><i class="fas fa-arrow-right"></i></a>
+<a class="st-quick-route-card" href="#booking"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/56/Kuta_Beach_Bali_Indonesia.jpg/320px-Kuta_Beach_Bali_Indonesia.jpg" alt="" loading="lazy"/><span><strong>Singaraja → Bandara / Kuta</strong><b>Cek jadwal</b></span><i class="fas fa-arrow-right"></i></a>
+<a class="st-quick-route-card" href="#booking"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8b/Bandara_I_Gusti_Ngurahrai_Bali.jpg/320px-Bandara_I_Gusti_Ngurahrai_Bali.jpg" alt="" loading="lazy"/><span><strong>Airport → Singaraja / Lovina</strong><b>MPV Rp650.000</b></span><i class="fas fa-arrow-right"></i></a>
+<a class="st-quick-route-card" href="#booking"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8e/Besakih_Bali_Indonesia_Pura-Besakih-01.jpg/320px-Besakih_Bali_Indonesia_Pura-Besakih-01.jpg" alt="" loading="lazy"/><span><strong>Denpasar → Karangasem</strong><b>Cek jadwal</b></span><i class="fas fa-arrow-right"></i></a>
+</div>
 </div>
 </section>
 <!-- ROUTES -->

@@ -262,7 +262,7 @@
 
     function isBookingInteractionTarget(target) {
       return Boolean(target?.closest?.(
-        '.booking-field, .combo-trigger, .combo-inline-search, .trip-mode-label, .airport-direction-label, .tab-button, .travel-search-button, .airport-search-button'
+        '.booking-field, .combo-trigger, .combo-inline-search, .trip-mode-label, .airport-direction-label, .tab-button, .travel-search-button, .airport-search-button, .charter-search-button'
       ));
     }
 
@@ -317,9 +317,10 @@
         button.setAttribute('aria-selected', 'true');
         document.getElementById('tab-' + button.dataset.tab)?.classList.add('active');
 
-        const airportActive = button.dataset.tab === 'airport';
-        bookingWidget?.classList.toggle('airport-active', airportActive);
-        bookingWidget?.classList.toggle('travel-active', !airportActive);
+        const activeTab = button.dataset.tab;
+        bookingWidget?.classList.toggle('travel-active', activeTab === 'travel');
+        bookingWidget?.classList.toggle('airport-active', activeTab === 'airport');
+        bookingWidget?.classList.toggle('charter-active', activeTab === 'charter');
         updateTabIcons();
       });
     });
@@ -486,11 +487,11 @@
         return isComboboxComplete(field);
       }
 
-      if (field === dateInput || field === travelReturnDate || field === airportPickupDate) {
+      if (field === dateInput || field === travelReturnDate || field === airportPickupDate || field === charterPickupDate) {
         return Boolean(field.dataset.value);
       }
 
-      if (field === airportPickupTime) {
+      if (field === airportPickupTime || field === charterPickupTime) {
         return /^\d{2}:\d{2}$/.test(field.value || '');
       }
 
@@ -511,12 +512,12 @@
         return;
       }
 
-      if (field === dateInput || field === travelReturnDate || field === airportPickupDate) {
+      if (field === dateInput || field === travelReturnDate || field === airportPickupDate || field === charterPickupDate) {
         showDatePicker(field);
         return;
       }
 
-      if (field === airportPickupTime) {
+      if (field === airportPickupTime || field === charterPickupTime) {
         showTimePicker(field);
         return;
       }
@@ -564,6 +565,21 @@
         return {
           fields: airportFields,
           action: document.getElementById('airportSearchButton')
+        };
+      }
+
+      const charterFields = [
+        document.getElementById('charterOriginBox'),
+        document.getElementById('charterDestinationBox'),
+        charterPickupDate,
+        charterPickupTime,
+        document.getElementById('charterPassenger')
+      ].filter(Boolean);
+
+      if (charterForm?.contains(currentField)) {
+        return {
+          fields: charterFields,
+          action: document.getElementById('charterSearchButton')
         };
       }
 
@@ -1202,6 +1218,7 @@
     const travelReturnWrap = document.getElementById('travelReturnWrap');
     const travelForm = document.getElementById('travelForm');
     const airportForm = document.getElementById('airportForm');
+    const charterForm = document.getElementById('charterForm');
     const tripModeInputs = document.querySelectorAll('.trip-mode');
     const languageToggle = document.getElementById('languageToggle');
     const langIdLabel = document.getElementById('langIdLabel');
@@ -1211,10 +1228,13 @@
     const localizedDateInputs = [
       document.getElementById('travelDate'),
       document.getElementById('travelReturnDate'),
-      document.getElementById('airportPickupDate')
+      document.getElementById('airportPickupDate'),
+      document.getElementById('charterPickupDate')
     ].filter(Boolean);
     const airportPickupDate = document.getElementById('airportPickupDate');
     const airportPickupTime = document.getElementById('airportPickupTime');
+    const charterPickupDate = document.getElementById('charterPickupDate');
+    const charterPickupTime = document.getElementById('charterPickupTime');
     let currentLang = 'id';
 
     function getCurrentTimeString() {
@@ -1223,9 +1243,9 @@
     }
 
     function updateCurrentTimePlaceholder() {
-      if (airportPickupTime && !airportPickupTime.value) {
-        airportPickupTime.placeholder = getCurrentTimeString();
-      }
+      [airportPickupTime, charterPickupTime].forEach(input => {
+        if (input && !input.value) input.placeholder = getCurrentTimeString();
+      });
     }
 
     function applyDateLocale(lang) {
@@ -1472,6 +1492,7 @@
     function showDatePicker(input) {
       localizedDateInputs.forEach(el => el.classList.remove('is-active'));
       airportPickupTime?.classList.remove('is-active');
+      charterPickupTime?.classList.remove('is-active');
       activeDateInput = input;
       input.classList.add('is-active');
       if (input.dataset.value) {
@@ -1606,6 +1627,7 @@
     function showTimePicker(input) {
       localizedDateInputs.forEach(el => el.classList.remove('is-active'));
       airportPickupTime?.classList.remove('is-active');
+      charterPickupTime?.classList.remove('is-active');
       activeTimeInput = input;
       input.classList.add('is-active');
       if (input.value && /^\d{2}:\d{2}$/.test(input.value)) {
@@ -1627,6 +1649,7 @@
     }
 
     airportPickupTime?.addEventListener('click', () => showTimePicker(airportPickupTime));
+    charterPickupTime?.addEventListener('click', () => showTimePicker(charterPickupTime));
     timePickerDone?.addEventListener('click', () => {
       const completedTimeInput = activeTimeInput;
       updateTimePreview();
@@ -1724,6 +1747,34 @@
       return valid;
     }
 
+    function validateCharterForm() {
+      let valid = true;
+      let firstInvalid = null;
+      const requiredCombos = Array.from(charterForm?.querySelectorAll('[data-combobox][data-required="true"]') || []);
+      requiredCombos.forEach(box => {
+        const trigger = box.querySelector('.combo-trigger');
+        clearFieldError(trigger);
+        if (!comboboxHasValue(box)) {
+          valid = false;
+          markFieldError(trigger);
+          firstInvalid ||= trigger;
+        }
+      });
+
+      [charterPickupDate, charterPickupTime].forEach(input => {
+        clearFieldError(input);
+        const hasValue = input?.id === 'charterPickupDate' ? Boolean(input?.dataset.value) : Boolean(input?.value);
+        if (!hasValue) {
+          valid = false;
+          markFieldError(input);
+          firstInvalid ||= input;
+        }
+      });
+
+      firstInvalid?.focus?.();
+      return valid;
+    }
+
     travelForm?.addEventListener('submit', event => {
       event.preventDefault();
       validateTravelForm();
@@ -1732,6 +1783,11 @@
     airportForm?.addEventListener('submit', event => {
       event.preventDefault();
       validateAirportForm();
+    });
+
+    charterForm?.addEventListener('submit', event => {
+      event.preventDefault();
+      validateCharterForm();
     });
 
     // One global pointer-close handler for comboboxes, pickers, language menu, and field errors.

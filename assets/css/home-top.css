@@ -1,0 +1,382 @@
+/* SINGARAJA TRANS top-home replacement
+   Replaces the old hero, booking shell and four benefit cards with the approved compact layout. */
+
+.st-top-hero {
+  position: relative;
+  min-height: 390px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background-position: center 46%;
+  background-size: cover;
+}
+
+.st-top-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(4,12,28,.82) 0%, rgba(4,12,28,.70) 34%, rgba(4,12,28,.38) 64%, rgba(4,12,28,.12) 100%),
+    linear-gradient(180deg, rgba(4,12,28,.12) 0%, rgba(4,12,28,.36) 100%);
+  pointer-events: none;
+}
+
+.st-top-hero-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding-top: 52px;
+  padding-bottom: 92px;
+}
+
+.st-top-hero-copy {
+  width: min(620px, 100%);
+  color: #fff;
+}
+
+.st-top-kicker {
+  margin-bottom: 12px;
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: .24em;
+  color: rgba(255,255,255,.78);
+}
+
+.st-top-kicker span { color: #F97316; }
+
+.st-top-title {
+  margin: 0;
+  max-width: 620px;
+  font-size: clamp(34px, 4.1vw, 58px);
+  line-height: 1.04;
+  letter-spacing: -.038em;
+  font-weight: 800;
+  color: #fff;
+}
+
+.st-top-title span { color: #FB923C; }
+
+.st-top-subtitle {
+  margin-top: 14px;
+  max-width: 560px;
+  font-size: 14px;
+  line-height: 1.65;
+  color: rgba(255,255,255,.84);
+}
+
+.st-top-subtitle strong { color: #fff; }
+
+.st-top-trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 22px;
+  margin-top: 22px;
+}
+
+.st-top-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 158px;
+  color: #fff;
+}
+
+.st-top-trust-icon {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(251,146,60,.72);
+  border-radius: 999px;
+  color: #FB923C;
+  background: rgba(2,6,23,.28);
+}
+
+.st-top-trust-item strong {
+  display: block;
+  font-size: 11px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.st-top-trust-item small {
+  display: block;
+  margin-top: 2px;
+  font-size: 9px;
+  line-height: 1.25;
+  color: rgba(255,255,255,.62);
+}
+
+.st-booking-section {
+  position: relative;
+  z-index: 20;
+  margin-top: -58px;
+  padding-bottom: 28px;
+}
+
+.st-booking-shell {
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 16px 42px rgba(15,23,42,.15);
+  overflow: visible;
+}
+
+.st-booking-shell .booking-tabs-shell {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 54px;
+  padding: 6px;
+  border: 1px solid #e2e8f0;
+  border-bottom: 0;
+  border-radius: 18px 18px 0 0;
+  background: #fff;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.st-booking-shell .booking-tabs-shell::-webkit-scrollbar { display: none; }
+
+.st-booking-shell .tab-button {
+  width: auto !important;
+  min-width: max-content;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 0 15px;
+  border: 0 !important;
+  border-radius: 11px !important;
+  background: transparent !important;
+  color: #475569 !important;
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: none !important;
+}
+
+.st-booking-shell .tab-button.active {
+  background: #F97316 !important;
+  color: #fff !important;
+}
+
+.st-booking-shell .tab-button .tab-icon {
+  font-size: 14px;
+  color: currentColor;
+}
+
+.st-booking-body {
+  position: relative;
+  padding: 17px 18px 18px;
+  border: 1px solid #e2e8f0;
+  border-radius: 0 0 18px 18px;
+  background: #fff;
+}
+
+.st-booking-shell .tab-panel { display: none; }
+.st-booking-shell .tab-panel.active { display: block; }
+
+.st-booking-shell .travel-mode-row,
+.st-booking-shell .airport-direction-row {
+  margin-bottom: 11px !important;
+}
+
+.st-booking-shell .combo-trigger,
+.st-booking-shell .booking-field {
+  min-height: 44px;
+  border-color: #dbe3ee !important;
+  border-radius: 10px !important;
+  background: #f8fafc !important;
+  box-shadow: none !important;
+}
+
+.st-booking-shell .combo-trigger:hover,
+.st-booking-shell .booking-field:hover {
+  border-color: #cbd5e1 !important;
+}
+
+.st-booking-shell .combo-trigger:focus,
+.st-booking-shell .booking-field:focus,
+.st-booking-shell .combo-trigger.is-active,
+.st-booking-shell .booking-field.is-active {
+  border-color: #F97316 !important;
+  box-shadow: 0 0 0 3px rgba(249,115,22,.12) !important;
+  outline: none !important;
+}
+
+.st-booking-shell form > div > label {
+  color: #475569 !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+}
+
+.st-booking-shell .travel-search-button,
+.st-booking-shell .airport-search-button,
+.st-booking-shell .charter-search-button {
+  min-height: 44px !important;
+  border-radius: 10px !important;
+  box-shadow: 0 7px 16px rgba(249,115,22,.20) !important;
+}
+
+@media (min-width: 1024px) {
+  .st-booking-shell #travelForm {
+    display: grid !important;
+    grid-template-columns: 1.35fr 1.35fr .9fr .72fr .82fr;
+    align-items: end;
+    gap: 10px !important;
+  }
+
+  .st-booking-shell #travelForm.round-trip {
+    grid-template-columns: 1.15fr 1.15fr .82fr .82fr .66fr .78fr;
+  }
+
+  .st-booking-shell #airportForm {
+    display: grid !important;
+    grid-template-columns: 1.25fr 1.25fr .82fr .68fr .82fr;
+    align-items: end;
+    gap: 10px !important;
+  }
+
+  .st-booking-shell #charterForm {
+    display: grid !important;
+    grid-template-columns: 1.18fr 1.18fr .82fr .66fr .64fr .82fr;
+    align-items: end;
+    gap: 10px !important;
+  }
+}
+
+.st-quick-routes {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0,1fr));
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.st-quick-route-card {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 42px minmax(0,1fr) 26px;
+  align-items: center;
+  gap: 10px;
+  min-height: 68px;
+  padding: 9px 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 13px;
+  background: #fff;
+  color: #0f172a;
+  transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+
+.st-quick-route-card:hover {
+  border-color: #fed7aa;
+  box-shadow: 0 8px 22px rgba(15,23,42,.07);
+  transform: translateY(-1px);
+}
+
+.st-quick-route-card img {
+  width: 42px;
+  height: 42px;
+  border-radius: 9px;
+  object-fit: cover;
+  background: #f1f5f9;
+}
+
+.st-quick-route-card span { min-width: 0; }
+.st-quick-route-card strong {
+  display: block;
+  overflow: hidden;
+  font-size: 11px;
+  line-height: 1.25;
+  font-weight: 700;
+  text-overflow: ellipsis;
+}
+.st-quick-route-card b {
+  display: block;
+  margin-top: 2px;
+  font-size: 11px;
+  line-height: 1.2;
+  font-weight: 800;
+  color: #F97316;
+}
+
+.st-quick-route-card > i {
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: #f1f5f9;
+  color: #94a3b8;
+  font-size: 10px;
+}
+
+@media (max-width: 1023px) {
+  .st-top-hero { min-height: 360px; }
+  .st-top-hero-inner { padding-top: 40px; padding-bottom: 92px; }
+  .st-booking-section { margin-top: -52px; }
+  .st-quick-routes {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+  .st-quick-routes::-webkit-scrollbar { display: none; }
+  .st-quick-route-card {
+    flex: 0 0 230px;
+    scroll-snap-align: start;
+  }
+}
+
+@media (max-width: 768px) {
+  .st-top-hero {
+    min-height: 320px;
+    background-position: 62% center;
+  }
+  .st-top-hero-overlay {
+    background:
+      linear-gradient(90deg, rgba(4,12,28,.82) 0%, rgba(4,12,28,.70) 58%, rgba(4,12,28,.42) 100%),
+      linear-gradient(180deg, rgba(4,12,28,.08) 0%, rgba(4,12,28,.36) 100%);
+  }
+  .st-top-hero-inner { padding-top: 30px; padding-bottom: 78px; }
+  .st-top-kicker { font-size: 9px; margin-bottom: 9px; }
+  .st-top-title { font-size: 30px; max-width: 360px; }
+  .st-top-subtitle { margin-top: 10px; font-size: 12px; max-width: 350px; }
+  .st-top-trust { gap: 10px 14px; margin-top: 16px; }
+  .st-top-trust-item { min-width: auto; }
+  .st-top-trust-item small { display: none; }
+  .st-top-trust-item strong { font-size: 9px; }
+  .st-top-trust-icon { width: 29px; height: 29px; flex-basis: 29px; font-size: 11px; }
+
+  .st-booking-section { margin-top: -44px; padding-bottom: 20px; }
+  .st-booking-shell { border-radius: 15px; }
+  .st-booking-shell .booking-tabs-shell {
+    min-height: 52px;
+    padding: 5px;
+    border-radius: 15px 15px 0 0;
+  }
+  .st-booking-shell .tab-button {
+    min-height: 40px;
+    padding: 0 12px;
+    font-size: 12px;
+    border-radius: 10px !important;
+  }
+  .st-booking-body {
+    padding: 14px;
+    border-radius: 0 0 15px 15px;
+  }
+  .st-booking-shell form {
+    gap: 10px !important;
+  }
+  .st-booking-shell .travel-mode-row,
+  .st-booking-shell .airport-direction-row {
+    margin-bottom: 10px !important;
+  }
+}
