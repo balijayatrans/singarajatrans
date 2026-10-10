@@ -544,3 +544,58 @@
     flex-basis: 220px;
   }
 }
+
+
+/* Brand identity refinement: navy-led actions, orange as accent */
+:root {
+  --st-brand-navy: #0F172A;
+  --st-brand-navy-hover: #111C33;
+  --st-brand-navy-active: #0B1220;
+  --st-brand-orange: #F97316;
+}
+
+.st-service-tab.is-active,
+.st-service-tab[aria-selected="true"] {
+  background: var(--st-brand-navy);
+  color: #fff;
+  box-shadow: 0 7px 18px rgba(15, 23, 42, .18);
+}
+
+.st-service-tab.is-active svg,
+.st-service-tab[aria-selected="true"] svg {
+  color: #fff;
+}
+
+.st-booking-shell button[type="submit"],
+.st-booking-shell .search-submit,
+.st-booking-shell .booking-submit {
+  background: var(--st-brand-navy);
+  border-color: var(--st-brand-navy);
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, .16);
+}
+
+.st-booking-shell button[type="submit"]:hover,
+.st-booking-shell .search-submit:hover,
+.st-booking-shell .booking-submit:hover {
+  background: var(--st-brand-navy-hover);
+  border-color: var(--st-brand-navy-hover);
+}
+
+.st-booking-shell button[type="submit"]:active,
+.st-booking-shell .search-submit:active,
+.st-booking-shell .booking-submit:active {
+  background: var(--st-brand-navy-active);
+  border-color: var(--st-brand-navy-active);
+}
+
+.st-booking-shell input:focus,
+.st-booking-shell select:focus,
+.st-booking-shell button:focus-visible,
+.st-service-tab:focus-visible {
+  outline-color: var(--st-brand-orange);
+}
+
+.st-booking-shell input[type="radio"]:checked {
+  accent-color: var(--st-brand-orange);
+}
