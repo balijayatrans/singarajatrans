@@ -83,22 +83,6 @@ const menuButton = document.getElementById('menuButton');
       return utilityTopBar.getBoundingClientRect().height || utilityTopBar.scrollHeight || 0;
     }
 
-    function heroTopBarThreshold() {
-      if (!heroSection || !desktopHeaderQuery.matches) return 0;
-
-      const heroTop = heroSection.offsetTop;
-      const heroHeight = heroSection.offsetHeight;
-
-      /* Reveal the utility bar when the viewport is back in the upper
-         portion of the hero, instead of showing it across the whole page. */
-      return heroTop + Math.min(heroHeight * 0.62, 260);
-    }
-
-    function shouldShowUtilityBar(scrollY) {
-      return desktopHeaderQuery.matches
-        && scrollY <= heroTopBarThreshold();
-    }
-
     function syncHeaderStack() {
       if (!mainNav) return;
 
@@ -129,7 +113,7 @@ const menuButton = document.getElementById('menuButton');
       document.body.classList.toggle('header-has-scrolled', window.scrollY > 4);
     }
 
-    function setUtilityBarVisibility(scrollY) {
+    function setUtilityBarVisibility() {
       if (!utilityTopBar) return;
 
       if (!desktopHeaderQuery.matches) {
@@ -139,26 +123,25 @@ const menuButton = document.getElementById('menuButton');
 
       utilityTopBar.classList.toggle(
         'is-hidden',
-        !shouldShowUtilityBar(scrollY)
+        Boolean(mainNav?.classList.contains('nav-hidden'))
       );
     }
 
     function showMainNav() {
       mainNav?.classList.remove('nav-hidden');
+      setUtilityBarVisibility();
     }
 
     function hideMainNav() {
       mainNav?.classList.add('nav-hidden');
+      setUtilityBarVisibility();
     }
 
     function updateHeaderBehavior() {
       const currentY = Math.max(0, window.scrollY);
       const delta = currentY - lastHeaderScrollY;
 
-      /* Top bar is location-aware: it only returns near the hero. */
-      setUtilityBarVisibility(currentY);
-
-      /* Main nav is direction-aware everywhere. */
+      /* Utility bar follows the same direction-aware hide/show behavior as the main nav. */
       if (currentY <= NAV_ALWAYS_VISIBLE_TOP_PX) {
         upwardTravel = 0;
         downwardTravel = 0;
@@ -198,7 +181,7 @@ const menuButton = document.getElementById('menuButton');
     window.addEventListener('resize', () => {
       window.requestAnimationFrame(() => {
         lastHeaderScrollY = Math.max(0, window.scrollY);
-        setUtilityBarVisibility(lastHeaderScrollY);
+        setUtilityBarVisibility();
         showMainNav();
         syncHeaderStack();
 
@@ -222,14 +205,14 @@ const menuButton = document.getElementById('menuButton');
       lastHeaderScrollY = Math.max(0, window.scrollY);
       upwardTravel = 0;
       downwardTravel = 0;
-      setUtilityBarVisibility(lastHeaderScrollY);
+      setUtilityBarVisibility();
       showMainNav();
       syncHeaderStack();
     });
 
     window.addEventListener('load', () => {
       lastHeaderScrollY = Math.max(0, window.scrollY);
-      setUtilityBarVisibility(lastHeaderScrollY);
+      setUtilityBarVisibility();
       showMainNav();
       syncHeaderStack();
     });
