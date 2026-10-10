@@ -169,13 +169,13 @@
 <div class="container mx-auto px-4 max-w-7xl">
 <div class="st-booking-shell" id="bookingExperience">
 <div class="st-service-tabs" role="tablist" aria-label="Pilih layanan">
-<button type="button" class="st-service-tab active" id="tab-btn-travel" data-tab="travel" role="tab" aria-controls="tab-travel" aria-selected="true">
+<button type="button" class="st-service-tab active" id="tab-btn-travel" data-tab="travel" role="tab" aria-controls="tab-travel" aria-selected="true" tabindex="0">
 <i aria-hidden="true" class="fa-solid fa-bus tab-icon"></i><span>Travel Reguler</span>
 </button>
-<button type="button" class="st-service-tab inactive" id="tab-btn-airport" data-tab="airport" role="tab" aria-controls="tab-airport" aria-selected="false">
+<button type="button" class="st-service-tab inactive" id="tab-btn-airport" data-tab="airport" role="tab" aria-controls="tab-airport" aria-selected="false" tabindex="-1">
 <i aria-hidden="true" class="fa-solid fa-plane-departure tab-icon"></i><span>Airport Transfer</span>
 </button>
-<button type="button" class="st-service-tab inactive" id="tab-btn-charter" data-tab="charter" role="tab" aria-controls="tab-charter" aria-selected="false">
+<button type="button" class="st-service-tab inactive" id="tab-btn-charter" data-tab="charter" role="tab" aria-controls="tab-charter" aria-selected="false" tabindex="-1">
 <i aria-hidden="true" class="fa-solid fa-car-side tab-icon"></i><span>Charter &amp; Private Trip</span>
 </button>
 </div>
@@ -199,11 +199,11 @@
 </label>
 </div>
 </div>
-<form class="grid grid-cols-1 md:grid-cols-2 gap-3 lg:gap-3 items-end" id="travelForm" novalidate="" onsubmit="event.preventDefault();">
+<form class="grid grid-cols-1 md:grid-cols-2 gap-3 lg:gap-3 items-end" id="travelForm" novalidate="">
 <div class="travel-origin-field">
-<label class="block text-xs md:text-[11px] font-semibold text-slate-700 mb-1.5">Asal<span class="required-mark">*</span></label>
+<label for="travelOriginTrigger" class="block text-xs md:text-[11px] font-semibold text-slate-700 mb-1.5">Asal<span class="required-mark">*</span></label>
 <div id="travelOriginBox" class="custom-combobox" data-combobox="" data-has-location="true" data-location-label="Asal" data-location-breakpoint="" data-required="true">
-<button class="combo-trigger relative w-full min-w-0 pl-10 pr-10 py-3 border border-slate-300 rounded-xl bg-white text-sm text-left focus:ring-2 focus:ring-orange-200 focus:border-singaraja-orange transition" type="button">
+<button id="travelOriginTrigger" class="combo-trigger relative w-full min-w-0 pl-10 pr-10 py-3 border border-slate-300 rounded-xl bg-white text-sm text-left focus:ring-2 focus:ring-orange-200 focus:border-singaraja-orange transition" type="button">
 <i class="fa-solid fa-location-dot absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
 <span class="combo-value block truncate whitespace-nowrap text-slate-500">Pilih kota asal</span>
 <i class="fas fa-chevron-down absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
@@ -230,9 +230,9 @@
 </div>
 </div>
 <div class="travel-destination-field">
-<label class="block text-xs md:text-[11px] font-semibold text-slate-700 mb-1.5">Tujuan<span class="required-mark">*</span></label>
+<label for="travelDestinationTrigger" class="block text-xs md:text-[11px] font-semibold text-slate-700 mb-1.5">Tujuan<span class="required-mark">*</span></label>
 <div class="custom-combobox" data-combobox="" data-has-location="false" data-location-label="Tujuan" data-location-breakpoint="" data-required="true" id="travelDestinationBox">
-<button class="combo-trigger relative w-full min-w-0 pl-10 pr-10 py-3 border border-slate-300 rounded-xl bg-white text-sm text-left focus:ring-2 focus:ring-orange-200 focus:border-singaraja-orange transition" type="button">
+<button id="travelDestinationTrigger" class="combo-trigger relative w-full min-w-0 pl-10 pr-10 py-3 border border-slate-300 rounded-xl bg-white text-sm text-left focus:ring-2 focus:ring-orange-200 focus:border-singaraja-orange transition" type="button">
 <i class="fas fa-location-dot absolute left-3.5 top-1/2 -translate-y-1/2 text-singaraja-orange"></i>
 <span class="combo-value block truncate whitespace-nowrap text-slate-500">Pilih kota tujuan</span>
 <i class="fas fa-chevron-down absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
@@ -258,23 +258,23 @@
 </div>
 </div>
 <div class="travel-departure-date-field min-w-0">
-<label class="block text-xs md:text-[11px] font-semibold text-slate-700 mb-1.5">Tanggal Berangkat<span class="required-mark">*</span></label>
+<label for="travelDate" class="block text-xs md:text-[11px] font-semibold text-slate-700 mb-1.5">Tanggal Berangkat<span class="required-mark">*</span></label>
 <div class="relative">
 <i class="far fa-calendar-alt absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
 <input class="booking-field w-full pl-10 pr-3 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-orange-200 focus:border-singaraja-orange text-sm cursor-pointer bg-white" data-placeholder-en="Oct 06, 2026" data-placeholder-id="06 Okt, 2026" data-required="true" id="travelDate" placeholder="06 Okt, 2026" readonly="" type="text"/>
 </div>
 </div>
 <div class="travel-return-date-field hidden min-w-0" id="travelReturnWrap">
-<label class="block text-xs md:text-[11px] font-semibold text-slate-700 mb-1.5">Tanggal Pulang<span class="required-mark">*</span></label>
+<label for="travelReturnDate" class="block text-xs md:text-[11px] font-semibold text-slate-700 mb-1.5">Tanggal Pulang<span class="required-mark">*</span></label>
 <div class="relative">
 <i class="far fa-calendar-check absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
 <input class="booking-field w-full pl-10 pr-3 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-orange-200 focus:border-singaraja-orange text-sm cursor-pointer bg-white" data-placeholder-en="Oct 06, 2026" data-placeholder-id="06 Okt, 2026" data-required="true" id="travelReturnDate" placeholder="06 Okt, 2026" readonly="" type="text"/>
 </div>
 </div>
 <div class="travel-passenger-field">
-<label class="block text-xs md:text-[11px] font-semibold text-slate-700 mb-1.5">Penumpang</label>
+<label for="travelPassengerTrigger" class="block text-xs md:text-[11px] font-semibold text-slate-700 mb-1.5">Penumpang</label>
 <div class="custom-combobox passenger-combobox" data-combobox="" id="travelPassengerBox">
-<button class="combo-trigger relative w-full min-w-0 pl-10 pr-10 py-3 border border-slate-300 rounded-xl bg-white text-sm text-left transition" type="button">
+<button id="travelPassengerTrigger" class="combo-trigger relative w-full min-w-0 pl-10 pr-10 py-3 border border-slate-300 rounded-xl bg-white text-sm text-left transition" type="button">
 <i class="fas fa-user absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
 <span class="combo-value block truncate whitespace-nowrap text-slate-800">1 Orang</span>
 <i class="fas fa-chevron-down absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
@@ -321,9 +321,9 @@
 </label>
 </div>
 </div>
-<form class="grid grid-cols-1 md:grid-cols-2 gap-3 lg:gap-3 items-end" id="airportForm" novalidate="" onsubmit="event.preventDefault();">
+<form class="grid grid-cols-1 md:grid-cols-2 gap-3 lg:gap-3 items-end" id="airportForm" novalidate="">
 <div class="airport-origin-field">
-<label class="block text-xs md:text-[11px] font-semibold text-slate-700 mb-1.5" id="airportPickupLabel">Asal<span class="required-mark">*</span></label>
+<label for="airportPickupTrigger" class="block text-xs md:text-[11px] font-semibold text-slate-700 mb-1.5" id="airportPickupLabel">Asal<span class="required-mark">*</span></label>
 <div class="custom-combobox" data-combobox="" data-has-location="false" data-location-context="airport" data-location-label="Asal" data-location-breakpoint="" data-required="true" id="airportPickupBox">
 <button class="combo-trigger relative w-full min-w-0 pl-10 pr-10 py-3 border border-slate-300 rounded-xl bg-white text-sm text-left transition" id="airportPickupTrigger" type="button">
 <i class="fas fa-plane-arrival absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" id="airportPickupIcon"></i>
@@ -345,7 +345,7 @@
 </div>
 </div>
 <div class="airport-destination-field">
-<label class="block text-xs md:text-[11px] font-semibold text-slate-700 mb-1.5" id="airportDestinationLabel">Tujuan<span class="required-mark">*</span></label>
+<label for="airportDestinationTrigger" class="block text-xs md:text-[11px] font-semibold text-slate-700 mb-1.5" id="airportDestinationLabel">Tujuan<span class="required-mark">*</span></label>
 <div class="custom-combobox" data-combobox="" data-has-location="false" data-location-context="airport" data-location-label="Tujuan" data-location-breakpoint="" data-required="true" id="airportDestinationBox">
 <button class="combo-trigger relative w-full min-w-0 pl-10 pr-10 py-3 border border-slate-300 rounded-xl bg-white text-sm text-left transition" id="airportDestinationTrigger" type="button">
 <i class="fas fa-location-dot absolute left-3.5 top-1/2 -translate-y-1/2 text-singaraja-orange" id="airportDestinationIcon"></i>
@@ -366,14 +366,14 @@
 </div>
 </div>
 <div class="airport-date-field min-w-0">
-<label class="block text-xs md:text-[11px] font-semibold text-slate-700 mb-1.5">Tanggal Jemput<span class="required-mark">*</span></label>
+<label for="airportPickupDate" class="block text-xs md:text-[11px] font-semibold text-slate-700 mb-1.5">Tanggal Jemput<span class="required-mark">*</span></label>
 <div class="relative">
 <i class="far fa-calendar-alt absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"></i>
 <input class="booking-field w-full pl-10 pr-3 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-orange-200 focus:border-singaraja-orange bg-white text-sm text-slate-700 cursor-pointer" data-placeholder-en="Oct 06, 2026" data-placeholder-id="06 Okt, 2026" data-required="true" id="airportPickupDate" placeholder="06 Okt, 2026" readonly="" type="text"/>
 </div>
 </div>
 <div class="airport-time-field min-w-0">
-<label class="block text-xs md:text-[11px] font-semibold text-slate-700 mb-1.5">Waktu<span class="required-mark">*</span></label>
+<label for="airportPickupTime" class="block text-xs md:text-[11px] font-semibold text-slate-700 mb-1.5">Waktu<span class="required-mark">*</span></label>
 <div class="relative">
 <i class="far fa-clock absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"></i>
 <input class="booking-field w-full pl-10 pr-3 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-orange-200 focus:border-singaraja-orange bg-white text-sm text-slate-700 cursor-pointer" data-required="true" id="airportPickupTime" placeholder="09:35" readonly="" type="text"/>
@@ -386,11 +386,11 @@
 </div>
 
 <div class="st-service-panel" id="tab-charter" role="tabpanel" aria-labelledby="tab-btn-charter">
-<form class="grid grid-cols-1 md:grid-cols-2 gap-3 items-end" id="charterForm" novalidate="" onsubmit="event.preventDefault();">
+<form class="grid grid-cols-1 md:grid-cols-2 gap-3 items-end" id="charterForm" novalidate="">
 <div class="charter-origin-field">
-<label class="block text-xs md:text-[11px] font-semibold text-slate-700 mb-1.5">Asal<span class="required-mark">*</span></label>
+<label for="charterOriginTrigger" class="block text-xs md:text-[11px] font-semibold text-slate-700 mb-1.5">Asal<span class="required-mark">*</span></label>
 <div class="custom-combobox" data-combobox="" data-has-location="true" data-location-label="Asal" data-location-breakpoint="" data-required="true" id="charterOriginBox">
-<button class="combo-trigger relative w-full min-w-0 pl-10 pr-10 py-3 border border-slate-300 rounded-xl bg-white text-sm text-left transition" type="button">
+<button id="charterOriginTrigger" class="combo-trigger relative w-full min-w-0 pl-10 pr-10 py-3 border border-slate-300 rounded-xl bg-white text-sm text-left transition" type="button">
 <i class="fas fa-location-dot absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
 <span class="combo-value block truncate whitespace-nowrap text-slate-500">Pilih lokasi asal</span>
 <i class="fas fa-chevron-down absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
@@ -416,9 +416,9 @@
 </div>
 </div>
 <div class="charter-destination-field">
-<label class="block text-xs md:text-[11px] font-semibold text-slate-700 mb-1.5">Tujuan<span class="required-mark">*</span></label>
+<label for="charterDestinationTrigger" class="block text-xs md:text-[11px] font-semibold text-slate-700 mb-1.5">Tujuan<span class="required-mark">*</span></label>
 <div class="custom-combobox" data-combobox="" data-has-location="false" data-location-label="Tujuan" data-location-breakpoint="" data-required="true" id="charterDestinationBox">
-<button class="combo-trigger relative w-full min-w-0 pl-10 pr-10 py-3 border border-slate-300 rounded-xl bg-white text-sm text-left transition" type="button">
+<button id="charterDestinationTrigger" class="combo-trigger relative w-full min-w-0 pl-10 pr-10 py-3 border border-slate-300 rounded-xl bg-white text-sm text-left transition" type="button">
 <i class="fas fa-location-dot absolute left-3.5 top-1/2 -translate-y-1/2 text-singaraja-orange"></i>
 <span class="combo-value block truncate whitespace-nowrap text-slate-500">Pilih lokasi tujuan</span>
 <i class="fas fa-chevron-down absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
@@ -443,21 +443,21 @@
 </div>
 </div>
 <div class="charter-date-field min-w-0">
-<label class="block text-xs md:text-[11px] font-semibold text-slate-700 mb-1.5">Tanggal Jemput<span class="required-mark">*</span></label>
+<label for="charterPickupDate" class="block text-xs md:text-[11px] font-semibold text-slate-700 mb-1.5">Tanggal Jemput<span class="required-mark">*</span></label>
 <div class="relative">
 <i class="far fa-calendar-alt absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"></i>
 <input class="booking-field w-full pl-10 pr-3 py-3 border border-slate-300 rounded-xl bg-white text-sm text-slate-700 cursor-pointer" data-placeholder-en="Oct 06, 2026" data-placeholder-id="06 Okt, 2026" data-required="true" id="charterPickupDate" placeholder="06 Okt, 2026" readonly="" type="text"/>
 </div>
 </div>
 <div class="charter-time-field min-w-0">
-<label class="block text-xs md:text-[11px] font-semibold text-slate-700 mb-1.5">Waktu<span class="required-mark">*</span></label>
+<label for="charterPickupTime" class="block text-xs md:text-[11px] font-semibold text-slate-700 mb-1.5">Waktu<span class="required-mark">*</span></label>
 <div class="relative">
 <i class="far fa-clock absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"></i>
 <input class="booking-field w-full pl-10 pr-3 py-3 border border-slate-300 rounded-xl bg-white text-sm text-slate-700 cursor-pointer" data-required="true" id="charterPickupTime" placeholder="09:35" readonly="" type="text"/>
 </div>
 </div>
 <div class="charter-passenger-field">
-<label class="block text-xs md:text-[11px] font-semibold text-slate-700 mb-1.5">Penumpang</label>
+<label for="charterPassenger" class="block text-xs md:text-[11px] font-semibold text-slate-700 mb-1.5">Penumpang</label>
 <div class="relative">
 <i class="fas fa-user-group absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"></i>
 <select class="booking-field w-full pl-10 pr-8 py-3 border border-slate-300 rounded-xl bg-white text-sm text-slate-700 appearance-none" id="charterPassenger">
