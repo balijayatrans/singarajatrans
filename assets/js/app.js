@@ -1875,7 +1875,15 @@
     }
 
     languageToggle?.addEventListener('click', () => {
-      applyDateLocale(currentLang === 'id' ? 'en' : 'id');
+      alert('Versi English belum tersedia. Bahasa Indonesia tetap aktif.');
+    });
+
+    document.querySelectorAll('[data-language-unavailable="true"]').forEach(link => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        closeMobileLanguageMenu();
+        alert('Versi English belum tersedia. Bahasa Indonesia tetap aktif.');
+      });
     });
 
     applyDateLocale('id');
