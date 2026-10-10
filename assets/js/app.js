@@ -1010,9 +1010,13 @@
     const LOCATION_CACHE_KEY = 'singaraja:last-location';
     const LOCATION_CACHE_MAX_AGE = 15 * 60 * 1000;
 
+    try {
+      localStorage.removeItem(LOCATION_CACHE_KEY);
+    } catch (_) {}
+
     function readCachedDevicePosition() {
       try {
-        const cached = JSON.parse(localStorage.getItem(LOCATION_CACHE_KEY) || 'null');
+        const cached = JSON.parse(sessionStorage.getItem(LOCATION_CACHE_KEY) || 'null');
         const age = cached?.timestamp ? Date.now() - Number(cached.timestamp) : Infinity;
         if (
           Number.isFinite(cached?.latitude) &&
@@ -1033,7 +1037,7 @@
 
     function cacheDevicePosition(position) {
       try {
-        localStorage.setItem(LOCATION_CACHE_KEY, JSON.stringify({
+        sessionStorage.setItem(LOCATION_CACHE_KEY, JSON.stringify({
           latitude: Number(position.coords.latitude),
           longitude: Number(position.coords.longitude),
           accuracy: Number.isFinite(position.coords.accuracy) ? Number(position.coords.accuracy) : null,
