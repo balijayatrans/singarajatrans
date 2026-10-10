@@ -707,12 +707,12 @@
   position: fixed;
   inset: 0 0 auto;
   z-index: 70;
-  min-height: 28px;
+  min-height: 24px;
   display: flex;
   align-items: center;
   background: var(--st-brand-navy);
   border-bottom: 1px solid rgba(255, 255, 255, .08);
-  transition: transform .2s ease, opacity .2s ease;
+  transition: transform .16s ease, opacity .16s ease;
 }
 
 #utilityTopBar.is-hidden {
@@ -722,7 +722,7 @@
 }
 
 #utilityTopBar > .container {
-  min-height: 28px;
+  min-height: 24px;
 }
 
 #utilityTopBar .utility-contact-link,
