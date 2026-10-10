@@ -37,7 +37,7 @@ jobs:
 
       - name: Commit generated CSS
         run: |
-          if git diff --quiet -- assets/css/tailwind.css package-lock.json; then
+          if [ -z "$(git status --porcelain -- assets/css/tailwind.css package-lock.json)" ]; then
             echo "No generated changes."
             exit 0
           fi
