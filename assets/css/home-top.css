@@ -10,7 +10,7 @@
 
 .st-ref-hero {
   position: relative;
-  min-height: 425px;
+  min-height: 0;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -267,20 +267,22 @@
 
 @media (min-width: 1024px) {
   .st-ref-hero {
-    min-height: 425px;
+    min-height: 0;
+    aspect-ratio: 3 / 2;
+    background: #0f172a;
   }
 
   .st-ref-hero-media img {
-    object-fit: cover;
-    object-position: center 50%;
+    object-fit: contain;
+    object-position: center center;
   }
 
   .st-ref-hero-shade {
     background: linear-gradient(
       90deg,
-      rgba(2,6,23,.74) 0%,
-      rgba(2,6,23,.40) 40%,
-      rgba(2,6,23,.08) 70%,
+      rgba(2,6,23,.78) 0%,
+      rgba(2,6,23,.44) 38%,
+      rgba(2,6,23,.10) 68%,
       rgba(2,6,23,0) 100%
     );
   }
@@ -291,8 +293,8 @@
   }
 
   .st-ref-hero-content {
-    padding-top: 40px;
-    padding-bottom: 102px;
+    padding-top: 52px;
+    padding-bottom: 150px;
   }
 
   .st-ref-hero-copy {
