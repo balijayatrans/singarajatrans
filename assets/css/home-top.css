@@ -10,7 +10,7 @@
 
 .st-ref-hero {
   position: relative;
-  min-height: 415px;
+  min-height: 500px;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -139,7 +139,7 @@
 .st-booking-section {
   position: relative;
   z-index: 20;
-  margin-top: -46px;
+  margin-top: -58px;
   padding: 0 0 34px;
   background: transparent;
 }
@@ -147,7 +147,7 @@
 .st-booking-section::before {
   content: "";
   position: absolute;
-  inset: 46px 0 0;
+  inset: 58px 0 0;
   z-index: -1;
   background: #f8fafc;
 }
@@ -267,32 +267,56 @@
 
 @media (min-width: 1024px) {
   .st-ref-hero {
-    min-height: 415px;
+    min-height: 500px;
   }
 
   .st-ref-hero-media img {
     object-fit: cover;
-    object-position: center 50%;
+    object-position: center 46%;
   }
 
   .st-ref-hero-shade {
     background: linear-gradient(
       90deg,
-      rgba(2,6,23,.82) 0%,
-      rgba(2,6,23,.48) 46%,
-      rgba(2,6,23,.16) 72%,
-      rgba(2,6,23,.02) 100%
+      rgba(2,6,23,.78) 0%,
+      rgba(2,6,23,.44) 44%,
+      rgba(2,6,23,.12) 72%,
+      rgba(2,6,23,0) 100%
     );
   }
 
   .st-ref-hero-bottom-shade {
-    height: 120px;
-    background: linear-gradient(0deg, rgba(2,6,23,.52), transparent);
+    height: 140px;
+    background: linear-gradient(0deg, rgba(2,6,23,.46), transparent);
   }
 
   .st-ref-hero-content {
-    padding-top: 42px;
-    padding-bottom: 94px;
+    padding-top: 54px;
+    padding-bottom: 130px;
+  }
+
+  .st-ref-hero-copy {
+    max-width: 580px;
+  }
+
+  .st-ref-hero-copy h1 {
+    max-width: 580px;
+    font-size: clamp(40px, 3.65vw, 50px);
+    line-height: 1.06;
+  }
+
+  .st-ref-subtitle {
+    max-width: 480px;
+    font-size: 12.5px;
+  }
+
+  .st-ref-badges {
+    margin-top: 18px;
+    gap: 9px;
+  }
+
+  .st-ref-badge {
+    padding: 7px 10px;
   }
 }
 
