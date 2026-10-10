@@ -761,7 +761,9 @@ body.header-has-scrolled #mainNav {
 }
 
 .st-main-nav-inner {
-  min-height: 64px;
+  min-height: 58px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   gap: 28px;
 }
 
@@ -775,7 +777,7 @@ body.header-has-scrolled #mainNav {
   display: block;
   width: auto;
   max-width: none;
-  height: 50px;
+  height: 44px;
   object-fit: contain;
 }
 
@@ -844,13 +846,15 @@ body.header-has-scrolled #mainNav {
 
 @media (max-width: 1023px) {
   .st-main-nav-inner {
-  min-height: 54px;
+    min-height: 54px;
+    padding-top: 4px;
+    padding-bottom: 4px;
     gap: 14px;
   }
 
   .brand-logo-official {
-    width: 178px;
-    max-width: 178px;
+    width: 138px;
+    max-width: 138px;
     height: auto;
   }
 }
@@ -865,12 +869,14 @@ body.header-has-scrolled #mainNav {
   }
 
   .st-main-nav-inner {
-    min-height: 52px;
+    min-height: 50px;
+    padding-top: 4px;
+    padding-bottom: 4px;
   }
 
   .brand-logo-official {
-    width: 150px;
-    max-width: 150px;
+    width: 126px;
+    max-width: 126px;
     height: auto;
   }
 }
